@@ -26,6 +26,7 @@ gem 'sdoc', '~> 0.4.0',          group: :doc
 gem 'spring',        group: :development
 
 gem 'haml'
+gem 'haml-rails'
 
 group :test do
   gem 'rspec-rails'
