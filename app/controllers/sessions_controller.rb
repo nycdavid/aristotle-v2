@@ -1,26 +1,24 @@
 class SessionsController < ApplicationController
+  before_action :find_user, only: [:create]
+
   def new
   end
 
   def create
-    user_has_valid_credentials? ? sign_user_in : refuse_login
+    sign_user_in if user_has_valid_credentials?
   end
   
   private
-    def sign_user_in
-      session[:user_id] = @user.id
-      flash[:success] = 'You have successfully logged in!'
-      redirect_to account_path
-    end
+    def find_user
+      @user = User.find_by_email(params[:user][:email])
 
-    def refuse_login
-      flash[:danger] = 'Invalid email/password.'
-      redirect_to login_path
+      if @user.nil?
+        flash[:danger] = 'Invalid email/password.'
+        redirect_to login_path
+      end
     end
 
     def user_has_valid_credentials?
-      @user = User.find_by_email(params[:user][:email])
-      return false if @user.nil?
       @user.authenticate(params[:user][:password]) 
     end
 end

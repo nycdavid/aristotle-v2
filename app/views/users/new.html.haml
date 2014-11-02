@@ -1,0 +1,13 @@
+.module
+  = form_for @user do |f|
+    .form-group
+      = f.label :email, 'Email'
+      = f.text_field :email, placeholder: 'someone@somewhere.com'
+    .form-group
+      = f.label :password, 'Password'
+      = f.password_field :password, placeholder: 'Don\'t make it "password"...'
+    .form-group
+      = f.label :password_confirmation, 'Password Confirmation'
+      = f.password_field :password_confirmation, placeholder: 'Seriously, not a good idea...'
+    .form-group
+      = f.submit 'Sign Up'
