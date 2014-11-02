@@ -22,6 +22,8 @@ module ArchivrCoRb
 
     config.generators do |generator|
       generator.javascript_engine :js
+      generator.template_engine :haml
+      generator.test_framework :rspec
     end
   end
 end
