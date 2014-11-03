@@ -1,0 +1,7 @@
+.module
+  = form_for [current_user, @pursuit] do |f|
+    .form-group
+      = f.label :name, 'Name of Pursuit'
+      = f.text_field :name, placeholder: 'Take over the world in time for dinner...'
+    .form-group
+      = f.submit 'Create'
