@@ -6,5 +6,7 @@ Rails.application.routes.draw do
   resources :users, only: [:create]
 
   # Private routes
-  resource :user, only: [:update, :edit, :show], as: 'account'
+  resource :user, only: [:update, :edit, :show] do
+    resources :pursuits
+  end
 end

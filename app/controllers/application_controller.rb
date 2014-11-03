@@ -11,7 +11,7 @@ class ApplicationController < ActionController::Base
     def sign_user_in
       session[:user_id] = @user.id
       flash[:success] = 'You have successfully logged in!'
-      redirect_to account_path
+      redirect_to user_path
     end
     
     helper_method :current_user, :sign_user_in
