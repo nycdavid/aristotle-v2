@@ -27,6 +27,7 @@ gem 'spring',        group: :development
 
 gem 'haml'
 gem 'haml-rails'
+gem 'bower-rails'
 
 group :test do
   gem 'rspec-rails'
