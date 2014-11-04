@@ -13,6 +13,7 @@ feature 'User can create a Pursuit' do
     click_button 'Create'
     
     expect(page).to have_selector '*[rel="success-flash"]'
+    expect(page).to have_selector "*[data-pursuit-name='#{@pursuit.name}']"
   end
 
   scenario 'User enters invalid information' do
