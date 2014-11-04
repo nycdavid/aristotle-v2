@@ -2,9 +2,9 @@
   = form_tag sessions_path, method: 'post' do
     .form-group
       %label{ for: 'email' } Email
-      = text_field_tag 'user[email]', placeholder: 'Email', class: 'form-control'
+      = text_field_tag 'user[email]', nil, placeholder: 'Email', class: 'form-control'
     .form-group
       %label{ for: 'password' } Password
-      = password_field_tag 'user[password]', placeholder: 'Password', class: 'form-control'
+      = password_field_tag 'user[password]', nil, placeholder: 'Password', class: 'form-control'
     .form-group
       = button_tag 'Login'

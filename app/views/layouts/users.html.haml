@@ -1,6 +1,7 @@
 !!!
 %html
   %head
+    = javascript_include_tag 'users/application'
   %body
     - flash.each do |name, msg|
       = content_tag :div, msg, rel: "#{name}-flash" 
