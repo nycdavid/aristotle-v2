@@ -15,8 +15,6 @@ gem 'uglifier', '>= 1.3.0'
 
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
-# Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
-gem 'turbolinks'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 2.0'
 # bundle exec rake doc:rails generates the API under doc/api.
@@ -38,6 +36,10 @@ group :test do
   gem 'pry'
   gem 'faker'
   gem 'rack_session_access'
+end
+
+group :test, :development do
+  gem 'konacha', '~> 3.3.0'
 end
 
 # Use ActiveModel has_secure_password
