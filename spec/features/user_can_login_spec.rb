@@ -23,4 +23,14 @@ feature 'User can login' do
 
     expect(page).to have_selector '*[rel="danger-flash"]'
   end
+
+  scenario 'User enters invalid password' do
+    visit login_path
+    fill_in 'user[email]', with: @user.email
+    fill_in 'user[password]', with: 'wrongpass'
+    click_button 'Login'
+
+    expect(page).to have_selector '*[rel="danger-flash"]'
+  end
+
 end
