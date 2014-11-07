@@ -8,7 +8,7 @@ Rails.application.routes.draw do
   # Private routes
   resource :user, only: [:update, :edit, :show] do
     resources :pursuits do
-      resources :pomodori
+      resources :pomodori, only: [:new, :create]
     end
   end
 end
