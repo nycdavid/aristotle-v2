@@ -1,0 +1,12 @@
+= form_for @pursuit, url: user_pursuit_path(@pursuit) do |f|
+  .form-group
+    = f.label :name, 'Name'
+    = f.text_field :name
+  .form-group
+    = label_tag 'Default Pomodoro Length'
+    = f.label :pomodoro_length_in_minutes, 'Minutes'
+    = f.text_field :pomodoro_length_in_minutes
+    = f.label :pomodoro_length_in_seconds, 'Seconds'
+    = f.text_field :pomodoro_length_in_seconds
+  .form-group
+    = f.submit 'Save'

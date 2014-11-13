@@ -1,5 +1,10 @@
 class PursuitsController < ApplicationController
   layout 'users'
+  before_action :fetch_pursuit, only: [:show, :edit, :update]
+
+  def index
+    @pursuits = current_user.pursuits
+  end
 
   def new
     @pursuit = current_user.pursuits.new
@@ -11,13 +16,23 @@ class PursuitsController < ApplicationController
   end
 
   def show
+    #refactor
     @pursuit = Pursuit.find(params[:id])
+  end
+
+  def edit
+    # refactor
+    @pursuit = Pursuit.find(params[:id])
+  end
+
+  def update
+    @pursuit.update_attributes(pursuit_params) ? allow_pursuit : refuse_pursuit
   end
 
   private
     def allow_pursuit
       flash[:success] = 'Pursuit successfully created! Now get crackin\'!'
-      redirect_to(user_pursuit_path @pursuit)
+      redirect_to user_pursuits_path
     end
 
     def refuse_pursuit
@@ -26,6 +41,10 @@ class PursuitsController < ApplicationController
     end
   
     def pursuit_params
-      params.require(:pursuit).permit(:name)
+      params.require(:pursuit).permit(:name, :pomodoro_length_in_minutes, :pomodoro_length_in_seconds)
+    end
+
+    def fetch_pursuit
+      @pursuit = Pursuit.find(params[:id])
     end
 end

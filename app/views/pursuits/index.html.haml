@@ -1,0 +1,12 @@
+%table
+  %thead
+    %tr 
+      %th Name
+      %th Default Pomodoro Length
+      %th Cumulative Time
+  %tbody
+    - @pursuits.each do |pursuit|
+      %tr{ :'data-pursuit-id' => pursuit.id }
+        %td= pursuit.name
+        %td.default-pomodoro-length= convert_total_seconds_of(pursuit.default_pomodoro_length)
+        %td= pursuit.cumulative_time
