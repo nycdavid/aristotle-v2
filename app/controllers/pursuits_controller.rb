@@ -16,13 +16,9 @@ class PursuitsController < ApplicationController
   end
 
   def show
-    #refactor
-    @pursuit = Pursuit.find(params[:id])
   end
 
   def edit
-    # refactor
-    @pursuit = Pursuit.find(params[:id])
   end
 
   def update
