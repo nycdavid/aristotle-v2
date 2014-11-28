@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  root to: 'pages#home'
+
   # Public routes
   get '/login', to: 'sessions#new', as: 'login'
   get '/signup', to: 'users#new', as: 'sign_up'
