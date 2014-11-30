@@ -5,6 +5,6 @@ feature 'Guest can signup from landing page' do
     visit root_path 
     click_link 'Sign Up'
 
-    expect(page).to have_selector 'div[rel="signup"]'
+    expect(page).to have_selector '*[rel="signup"]'
   end
 end
