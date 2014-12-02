@@ -36,6 +36,7 @@ group :test do
   gem 'launchy'
   gem 'pry'
   gem 'faker'
+  gem 'selenium-webdriver'
   gem 'rack_session_access'
 end
 
