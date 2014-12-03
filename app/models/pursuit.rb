@@ -1,6 +1,7 @@
 class Pursuit < ActiveRecord::Base
   attr_accessor :pomodoro_length_in_minutes, :pomodoro_length_in_seconds
   belongs_to :user
+  has_many :pomodori
 
   # Validations
   validates_presence_of :name
