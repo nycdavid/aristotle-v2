@@ -27,6 +27,7 @@ gem 'haml'
 gem 'haml-rails'
 gem 'bower-rails'
 gem 'chronic'
+gem 'angular_rails_csrf'
 
 group :test do
   gem 'rspec-rails'
