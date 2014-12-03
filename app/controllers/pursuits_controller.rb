@@ -18,7 +18,7 @@ class PursuitsController < ApplicationController
   def show
     respond_to do |format|
       format.html { render :show }
-      format.js { render :json => @pursuit.to_json }
+      format.json { render :json => @pursuit.to_json }
     end
   end
 
