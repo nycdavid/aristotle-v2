@@ -31,3 +31,15 @@ describe Pursuit, '#default_pomodoro_length' do
   end
 end
 
+describe Pursuit, '#cumulative_time' do
+  before :each do
+    @pursuit = FactoryGirl.create :pursuit, { pomodoro_length_in_minutes: 15 }
+    2.times do
+      FactoryGirl.create :pomodoro, { pursuit_id: @pursuit.id }
+    end
+  end
+
+  it 'should return the total seconds put to the pursuit' do
+    expect(@pursuit.cumulative_time).to eq(20)
+  end
+end

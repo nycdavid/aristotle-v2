@@ -10,4 +10,9 @@ class Pursuit < ActiveRecord::Base
   include TimeConversions
 
   before_save :convert_length_to_seconds!
+
+  def cumulative_time
+    pomodori.map { |pom| pom.elapsed_time }
+            .inject(0) { |result, element| result + element } 
+  end
 end
