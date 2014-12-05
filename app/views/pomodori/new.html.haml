@@ -1,1 +1,4 @@
-.module{ rel: 'pomodori-timer' }
+.module{ rel: 'pomodori-timer', :'ng-controller' => 'PomodoroCtrl', :'ng-init' => "show(#{@pursuit.id})" }
+  %h2 Pursuit: {{ pursuit.name }}
+  %span Time remaining: {{ formattedTimeRemaining }}
+  %span Time elapsed: {{ timeElapsed }}

@@ -1,2 +1,4 @@
 .module{ :'data-pursuit-name' => @pursuit.name }
+  #cumulative-time
+    = convert_total_seconds_of(@pursuit.cumulative_time)
   = link_to 'Start Pomodoro', new_user_pursuit_pomodoro_path(@pursuit.id)

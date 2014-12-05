@@ -1,1 +1,1 @@
-var AristotleApp = angular.module('AristotleApp', ['ngResource', 'PursuitServices']);
+var AristotleApp = angular.module('AristotleApp', ['ngResource', 'PursuitServices', 'PomodoroServices']);

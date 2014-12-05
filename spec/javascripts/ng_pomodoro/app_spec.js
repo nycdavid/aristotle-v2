@@ -1,6 +1,4 @@
-//= require angular/angular
-//= require angular-resource/angular-resource.min
-//= require users/ng_pomodoro/app
+//= require spec_helper
 
 describe('AristotleApp', function() {
   it('should be defined as an angular module', function() {
