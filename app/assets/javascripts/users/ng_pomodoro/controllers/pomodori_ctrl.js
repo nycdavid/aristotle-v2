@@ -20,8 +20,6 @@ AristotleApp
                 checkTime();
               }, 1000);
             });
-    //  intervalPromise = $interval(function() {
-    //  }, 1000);
     };
 
     // Private
