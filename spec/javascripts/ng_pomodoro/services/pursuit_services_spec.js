@@ -1,6 +1,4 @@
 //= require spec_helper
-//= require users/ng_pomodoro/services/pomodoro_services
-//= require users/ng_pomodoro/services/pursuit_services
 
 var context = describe;
 

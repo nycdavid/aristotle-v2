@@ -1,6 +1,4 @@
 //= require spec_helper
-//= require users/ng_pomodoro/services/pursuit_services
-//= require users/ng_pomodoro/controllers/pomodori_ctrl
 
 describe('PomodoriCtrl', function() {
   var context = describe;
