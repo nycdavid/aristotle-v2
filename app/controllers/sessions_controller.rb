@@ -7,6 +7,12 @@ class SessionsController < ApplicationController
   def create
     user_has_valid_credentials? ? sign_user_in : refuse_login
   end
+
+  def destroy
+    session[:user_id] = nil
+    flash[:success] = 'Successfully logged out.'
+    redirect_to login_path
+  end
   
   private
     def find_user

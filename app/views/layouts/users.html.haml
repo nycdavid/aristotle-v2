@@ -2,7 +2,9 @@
 %html
   %head
     = javascript_include_tag 'users/application'
-  %body
+  %body{ :'ng-app' => 'AristotleApp' }
     - flash.each do |name, msg|
       = content_tag :div, msg, rel: "#{name}-flash" 
+    %nav
+      = link_to 'Logout', session_path, method: :delete
     = yield
