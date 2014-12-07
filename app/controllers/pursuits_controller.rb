@@ -1,5 +1,6 @@
 class PursuitsController < ApplicationController
   layout 'users'
+  before_action :ensure_authentication
   before_action :fetch_pursuit, only: [:show, :edit, :update]
 
   def index
