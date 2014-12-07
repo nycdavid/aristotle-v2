@@ -1,5 +1,5 @@
 .module-login-form{ rel: 'login' }
-  = form_tag sessions_path, method: 'post' do
+  = form_tag session_path, method: 'post' do
     .form-group
       %label{ for: 'email' } Email
       = text_field_tag 'user[email]', nil, placeholder: 'Email', class: 'form-control'
