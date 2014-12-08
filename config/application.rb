@@ -27,5 +27,7 @@ module Aristotle
     end
 
     config.assets.paths << Rails.root.join('vendor', 'assets', 'bower_components')
+
+    config.exceptions_app = self.routes
   end
 end
