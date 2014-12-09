@@ -1,4 +1,6 @@
 class UsersController < ApplicationController
+  before_action :ensure_authentication, only: [:show]
+
   def new
     @user = User.new
   end
