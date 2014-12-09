@@ -4,7 +4,7 @@ class Pursuit < ActiveRecord::Base
   has_many :pomodori
 
   # Validations
-  validates_presence_of :name
+  validates_presence_of :name, :user_id
 
   # Inclusions
   include TimeConversions

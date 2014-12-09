@@ -16,8 +16,16 @@ describe Pursuit, 'validations' do
 
   it 'should not allow a blank name' do
     @pursuit.name = nil
+
     expect(@pursuit).not_to be_valid 
     expect(@pursuit.errors.messages[:name]).to include "can't be blank"
+  end
+
+  it 'should not allow a blank user_id' do
+    @pursuit.user_id = nil
+
+    expect(@pursuit).not_to be_valid
+    expect(@pursuit.errors.messages[:user_id]).to include "can't be blank"
   end
 end
 
