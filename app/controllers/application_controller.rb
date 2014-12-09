@@ -6,7 +6,7 @@ class ApplicationController < ActionController::Base
   private
     def ensure_authentication
       unless user_signed_in?
-        raise 'Unauthorized'
+        redirect_to errors_not_found_path, status: 404
       end
     end
 
@@ -24,6 +24,6 @@ class ApplicationController < ActionController::Base
       redirect_to user_path
     end
     
-    helper_method :current_user, :sign_user_in
+    helper_method :current_user, :sign_user_in, :user_signed_in?
   
 end
