@@ -1,5 +1,6 @@
 class PomodoriController < ApplicationController
   layout 'users'
+  before_action :ensure_authentication
   before_action :fetch_pursuit, only: [:new, :create]
 
   def new
