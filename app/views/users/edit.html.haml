@@ -1,0 +1,7 @@
+.module{ rel: 'edit' }
+  = form_for @user do |f|
+    .form-group
+      = f.label :email, 'Email'
+      = f.text_field :email, placeholder: 'new@youremail.com'
+    .form-group
+      = f.submit 'Update account'

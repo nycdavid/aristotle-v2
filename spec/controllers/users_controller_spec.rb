@@ -31,15 +31,15 @@ describe UsersController, 'authentication' do
 
     describe '#edit' do
       it 'should respond with 200' do
-        pending
-        fail
+        get :edit
+        expect(response.status).to eq(200)
       end
     end
 
     describe '#update' do
       it 'should respond with 200' do
-        pending
-        fail
+        put :update, { user: { email: Faker::Internet.email } }
+        expect(response.status).to eq(302)
       end
     end
   end
@@ -68,15 +68,15 @@ describe UsersController, 'authentication' do
 
     describe '#edit' do
       it 'should respond with 404' do
-        pending
-        fail
+        get :edit
+        expect(response.status).to eq(404)
       end
     end
 
     describe '#update' do
       it 'should respond with 404' do
-        pending
-        fail
+        put :update, { user: { email: Faker::Internet.email } }
+        expect(response.status).to eq(404)
       end
     end
   end
