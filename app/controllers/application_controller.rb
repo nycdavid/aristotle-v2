@@ -5,7 +5,7 @@ class ApplicationController < ActionController::Base
 
   private
     def ensure_authentication
-      redirect_to errors_not_found_path, status: 404 unless user_signed_in?
+      render 'errors/not_found', status: 404 unless user_signed_in?
     end
 
     def user_signed_in?
