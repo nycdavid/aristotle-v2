@@ -68,10 +68,9 @@ describe PursuitsController, 'authentication' do
     end
 
     describe '#create' do
-      it 'should render create' do
+      it 'should create' do
         post :create, { pursuit: { name: 'Working out', user_id: user.id } }
-        pending
-        fail
+        expect(response.status).to eq(404)
       end
     end
 
