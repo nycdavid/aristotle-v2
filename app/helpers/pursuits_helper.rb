@@ -1,14 +1,36 @@
 module PursuitsHelper
   def convert_total_seconds_of(time)
-    "#{get_minutes(time)}:#{get_seconds(time)}"
+    @time = time
+    "#{calculate_hours}:#{calculate_minutes}:#{calculate_seconds}"
   end
 
   private
-    def get_minutes(time)
-      (time - (time % 60)) / 60
+    def hours
+      @hours ||= @time / 60 / 60
     end
 
-    def get_seconds(time)
-      time % 60 < 10 ? "0#{time % 60}" : time % 60
+    def minutes
+      @minutes ||= @time / 60
     end
+    
+    def seconds
+      @time % 60
+    end
+
+    def calculate_hours
+      pad(hours)
+    end
+
+    def calculate_minutes
+      pad(minutes - hours * 60)
+    end
+
+    def calculate_seconds
+      pad(seconds)
+    end
+
+    def pad(time)
+      time < 10 ? "0#{time}" : time
+    end
+
 end
