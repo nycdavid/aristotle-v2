@@ -3,6 +3,7 @@ require 'rails_helper'
 describe PomodoriController, 'authentication' do
   let(:user) { FactoryGirl.create :user }
   let(:pursuit) { FactoryGirl.create :pursuit }
+  let(:pomodoro) { FactoryGirl.create(:pomodoro, { pursuit_id: pursuit.id }) }
 
   context 'when User is signed in' do
     before :each do
@@ -25,8 +26,8 @@ describe PomodoriController, 'authentication' do
 
     describe '#show' do
       it 'should respond with 200' do
-        pending
-        fail
+        get :show, { pursuit_id: pursuit.id, id: pomodoro.id }
+        expect(response.status).to eq(200)
       end
     end
 
