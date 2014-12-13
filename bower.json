@@ -1,4 +1,5 @@
 {
+  "name": "Aristotle-v2",
   "lib": {
     "name": "bower-rails generated lib assets",
     "dependencies": {
