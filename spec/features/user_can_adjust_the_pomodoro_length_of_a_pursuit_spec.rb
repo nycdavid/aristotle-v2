@@ -13,6 +13,6 @@ feature 'User can adjust the pomodoro length of a pursuit' do
     click_button 'Save'
 
     expect(page).to have_selector '*[rel="success-flash"]'
-    expect(find("tr[data-pursuit-id='#{@pursuit.id}']").find('.default-pomodoro-length').text).to eq('15:00')
+    expect(find("tr[data-pursuit-id='#{@pursuit.id}']").find('.default-pomodoro-length').text).to eq('00:15:00')
   end
 end

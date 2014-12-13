@@ -1,0 +1,6 @@
+.module-pomodoro-show
+  %ul
+    %li Name: #{@pursuit.name}
+    %li Duration: #{convert_total_seconds_of(@pomodoro.elapsed_time)}
+    %li Started on: #{format_date(@pomodoro.start_time)}
+    %li Ended on: #{format_date(@pomodoro.end_time)}

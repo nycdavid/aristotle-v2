@@ -1,7 +1,8 @@
 class PomodoriController < ApplicationController
   layout 'users'
   before_action :ensure_authentication
-  before_action :fetch_pursuit, only: [:new, :create]
+  before_action :fetch_pursuit, only: [:new, :create, :show]
+  before_action :fetch_pomodoro, only: [:show]
 
   def new
   end
@@ -18,7 +19,14 @@ class PomodoriController < ApplicationController
     end
   end
 
+  def show
+  end
+
   private
+    def fetch_pomodoro
+      @pomodoro = Pomodoro.find(params[:id])
+    end
+
     def fetch_pursuit
       @pursuit = Pursuit.find(params[:pursuit_id])
     end
