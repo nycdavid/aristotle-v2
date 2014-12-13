@@ -6,6 +6,7 @@
     - flash.each do |name, msg|
       = content_tag :div, msg, rel: "#{name}-flash" 
     %nav
+      = link_to 'My Pursuits', user_pursuits_path
       - if user_signed_in?
         = link_to 'Logout', session_path, method: :delete
     = yield
