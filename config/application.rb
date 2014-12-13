@@ -30,13 +30,5 @@ module Aristotle
 
     config.exceptions_app = self.routes
 
-    config.assets.precompile.shift
-    config.assets.precompile.push(Proc.new do |path|
-      File.extname(path).in? [
-        '.html', '.erb', '.haml',
-        '.png', '.gif', '.jpeg', '.svg',
-        '.eot', '.otf', '.svc', '.woff', '.ttf'
-      ]
-    end)
   end
 end
