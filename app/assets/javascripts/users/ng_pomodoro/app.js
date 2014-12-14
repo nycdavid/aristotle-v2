@@ -1,1 +1,7 @@
-var AristotleApp = angular.module('AristotleApp', ['ngResource', 'PursuitServices', 'PomodoroServices']);
+var AristotleApp = angular.module('AristotleApp', [
+  'ngResource', 
+  'titleTimeDirective',
+  'PursuitServices', 
+  'PomodoroServices'
+]);
+

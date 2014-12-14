@@ -1,8 +1,9 @@
 !!!
-%html
+%html{ :'ng-app' => 'AristotleApp' }
   %head
+    %title{ :'title-time' => 'timeRemaining' }
     = javascript_include_tag 'users/application'
-  %body{ :'ng-app' => 'AristotleApp' }
+  %body
     - flash.each do |name, msg|
       = content_tag :div, msg, rel: "#{name}-flash" 
     %nav
