@@ -50,14 +50,14 @@ describe PomodoriController, 'authentication' do
     describe '#new' do
       it 'should respond with 404' do
         get :new, { pursuit_id: pursuit.id }
-        expect(response.status).to eq(404)
+        expect(response.status).to eq(302)
       end
     end
 
     describe '#create' do
       it 'should respond with 404' do
         post :create, { pursuit_id: pursuit.id, pomodoro: { elapsed_time: 10, pursuit_id: 5 } }
-        expect(response.status).to eq(404)
+        expect(response.status).to eq(302)
       end
     end
 
