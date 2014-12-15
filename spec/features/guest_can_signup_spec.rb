@@ -4,6 +4,10 @@ feature 'Guest can sign up' do
   before :each do
     visit sign_up_path
   end
+  
+  scenario 'Guest navigates to sign up page' do
+    expect(page).not_to have_link 'My Pursuits'
+  end
 
   scenario 'Guest goes to sign up page and enters valid information' do
     fill_in 'user[email]', with: 'person@example.com'

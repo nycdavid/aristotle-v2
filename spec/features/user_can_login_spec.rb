@@ -15,6 +15,15 @@ feature 'User can login' do
     expect(page).to have_selector '*[rel="account-view"]'
   end
 
+  scenario 'User logs in and then navigates to root' do
+    page.set_rack_session(user_id: @user.id)
+    visit root_path
+    
+    expect(page).to have_link 'My Pursuits'
+    expect(page).not_to have_link 'Sign Up'
+    expect(page).not_to have_link 'Login'
+  end
+
   scenario 'User enters invalid email' do
     visit login_path
     fill_in 'user[email]', with: 'foo@bar.com'
