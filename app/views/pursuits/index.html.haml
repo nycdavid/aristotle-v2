@@ -9,4 +9,4 @@
       %tr.pursuit{ :'data-pursuit-id' => pursuit.id, :'data-pursuit-name' => pursuit.name }
         %td= pursuit.name
         %td.default-pomodoro-length= convert_total_seconds_of(pursuit.default_pomodoro_length)
-        %td= pursuit.cumulative_time
+        %td.cumulative-time= convert_total_seconds_of(pursuit.cumulative_time)

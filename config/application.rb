@@ -26,8 +26,6 @@ module Aristotle
       generator.test_framework :rspec
     end
 
-    config.assets.paths << Rails.root.join('vendor', 'assets', 'bower_components')
-
     config.exceptions_app = self.routes
 
   end

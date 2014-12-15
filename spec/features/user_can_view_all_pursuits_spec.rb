@@ -10,8 +10,10 @@ feature 'User can view all Pursuits' do
   end
 
   scenario 'User navigates to Pursuit index' do
+    pursuit = Pursuit.first
     visit user_pursuits_path
     expect(page.all('.pursuit').count).to eq(5)
+    expect(page.find("tr[data-pursuit-id=\"#{pursuit.id}\"]").find('.cumulative-time').text).to eq('00:00:00')
   end
 
   scenario 'User navigates to Pursuit index from dashboard' do
