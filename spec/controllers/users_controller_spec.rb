@@ -76,7 +76,7 @@ describe UsersController, 'authentication' do
     describe '#update' do
       it 'should respond with 404' do
         put :update, { user: { email: Faker::Internet.email } }
-        expect(response.status).to eq(3024)
+        expect(response.status).to eq(302)
       end
     end
   end
