@@ -62,4 +62,23 @@ describe('PomodoriCtrl', function() {
 
     it('should send the pomodoro to the server');
   });
+
+  describe('#pause', function() {
+    beforeEach(function() {
+      scope.show(1);
+      backend.flush();
+    });
+
+    it('should pause the pomodoro timer', function() {
+      mockInterval.flush(1000);
+      expect(scope.formattedTimeRemaining).to.equal('0:49');
+
+      scope.pause();
+      mockInterval.flush(1000);
+      expect(scope.formattedTimeRemaining).to.equal('0:49');
+
+      mockInterval.flush(4000);
+      expect(scope.formattedTimeRemaining).to.equal('0:49');
+    });
+  });
 });

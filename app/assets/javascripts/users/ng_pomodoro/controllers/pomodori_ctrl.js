@@ -1,6 +1,6 @@
 AristotleApp
   .constant('pursuitsUrl', 'http://localhost:3000/user/pursuits/')
-  .controller('PomodoriCtrl', function($scope, $interval, $http, $resource, $window, pursuitsUrl, timeHelper, pomodoriHelper) {
+  .controller('PomodoriCtrl', function($scope, $rootScope, $interval, $http, $resource, $window, pursuitsUrl, timeHelper, pomodoriHelper) {
     $scope.pursuitsResource = $resource(pursuitsUrl + ':id.json', { id: '@id' });
     $scope.pomodoriResource = $resource(pursuitsUrl + ':pursuit_id/pomodori', { pursuit_id: '@pursuit_id' });
 
@@ -17,9 +17,14 @@ AristotleApp
               intervalPromise = $interval(function() {
                 timeHelper.incrementTime($scope); 
                 $scope.formattedTimeRemaining = timeHelper.timeRemainingString($scope);
+                $rootScope.$broadcast('timeUpdate', { formattedTimeRemaining: $scope.formattedTimeRemaining });
                 checkTime();
               }, 1000);
             });
+    };
+
+    $scope.pause = function() {
+      $interval.cancel(intervalPromise);
     };
 
     // Private
