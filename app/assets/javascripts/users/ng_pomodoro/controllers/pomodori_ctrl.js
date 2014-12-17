@@ -14,12 +14,7 @@ AristotleApp
               $scope.timeRemaining = data.default_pomodoro_length;
               $scope.formattedTimeRemaining = timeHelper.timeRemainingString($scope);
 
-              intervalPromise = $interval(function() {
-                timeHelper.incrementTime($scope); 
-                $scope.formattedTimeRemaining = timeHelper.timeRemainingString($scope);
-                $rootScope.$broadcast('timeUpdate', { formattedTimeRemaining: $scope.formattedTimeRemaining });
-                checkTime();
-              }, 1000);
+              intervalPromise = startTimer();
             });
     };
 
@@ -28,6 +23,7 @@ AristotleApp
     };
 
     $scope.resume = function() {
+      startTimer();
     };
 
     // Private
@@ -52,5 +48,14 @@ AristotleApp
 
     function redirectToPursuit() {
       $window.location.href = '/user/pursuits/' + $scope.pursuit.id;
+    };
+
+    function startTimer() {
+      return $interval(function() {
+        timeHelper.incrementTime($scope); 
+        $scope.formattedTimeRemaining = timeHelper.timeRemainingString($scope);
+        $rootScope.$broadcast('timeUpdate', { formattedTimeRemaining: $scope.formattedTimeRemaining });
+        checkTime();
+      }, 1000);
     };
   });

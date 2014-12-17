@@ -81,4 +81,21 @@ describe('PomodoriCtrl', function() {
       expect(scope.formattedTimeRemaining).to.equal('0:49');
     });
   });
+
+  describe('#resume', function() {
+    beforeEach(function() {
+      scope.show(1);
+      backend.flush();
+      scope.pause();
+    });
+
+    it('should resume a paused pomodoro timer', function() {
+      mockInterval.flush(1000);
+      expect(scope.formattedTimeRemaining).to.equal('0:50');
+
+      scope.resume();
+      mockInterval.flush(5000);
+      expect(scope.formattedTimeRemaining).to.equal('0:45');
+    });
+  });
 });
