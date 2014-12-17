@@ -27,6 +27,9 @@ AristotleApp
       $interval.cancel(intervalPromise);
     };
 
+    $scope.resume = function() {
+    };
+
     // Private
     function checkTime() {
       if ($scope.timeRemaining == 0) {
