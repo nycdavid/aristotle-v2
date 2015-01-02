@@ -21,4 +21,11 @@ feature 'User can view all Pursuits' do
     click_link 'My Pursuits'
     expect(page.all('.pursuit').count).to eq(5)
   end
+
+  scenario 'User views cumulative time for a pursuit' do
+    pursuit = FactoryGirl.create(:pursuit, { user_id: @user.id })
+    FactoryGirl.create(:pomodoro, { pursuit_id: pursuit.id, elapsed_time: 175 })
+    visit user_pursuits_path
+    expect(page.find("tr[data-pursuit-id=\"#{pursuit.id}\"]").find('.cumulative-time').text).to eq('00:02:55')
+  end
 end

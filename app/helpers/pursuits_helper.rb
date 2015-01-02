@@ -6,11 +6,11 @@ module PursuitsHelper
 
   private
     def hours
-      @hours ||= @time / 60 / 60
+      @time / 60 / 60
     end
 
     def minutes
-      @minutes ||= @time / 60
+      @time / 60
     end
     
     def seconds
