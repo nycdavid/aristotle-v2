@@ -1,3 +1,4 @@
+%h2 Edit: #{@pursuit.name}
 = form_for @pursuit, url: user_pursuit_path(@pursuit) do |f|
   .form-group
     = f.label :name, 'Name'
