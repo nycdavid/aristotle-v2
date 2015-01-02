@@ -1,4 +1,5 @@
-.module{ rel: 'pomodori-timer', :'ng-controller' => 'PomodoroCtrl', :'ng-init' => "show(#{@pursuit.id})" }
+.module{ rel: 'pomodori-timer', :'ng-controller' => 'PomodoriCtrl', :'ng-init' => "show(#{@pursuit.id})" }
   %h2 Pursuit: {{ pursuit.name }}
   %span Time remaining: {{ formattedTimeRemaining }}
-  %span Time elapsed: {{ timeElapsed }}
+  = link_to 'Pause', '#', { :'ng-click' => 'pause()' }
+  = link_to 'Resume', '#', { :'ng-click' => 'resume()' }

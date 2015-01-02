@@ -69,6 +69,21 @@ describe('PomodoriCtrl', function() {
       backend.flush();
     });
 
+    context('when the pomodoro is already paused', function() {
+      it('should return false', function() {
+        scope.pause();
+        var pauseAgain = scope.pause();
+
+        expect(pauseAgain).to.equal(false);
+      });
+    });
+
+    it('should set the pomodoro status to paused', function() {
+      scope.pause();   
+
+      expect(scope.status).to.equal('paused');
+    });
+
     it('should pause the pomodoro timer', function() {
       mockInterval.flush(1000);
       expect(scope.formattedTimeRemaining).to.equal('0:49');
@@ -87,6 +102,21 @@ describe('PomodoriCtrl', function() {
       scope.show(1);
       backend.flush();
       scope.pause();
+    });
+
+    context('when the pomodoro is already running', function() {
+      it('should return false', function() {
+        scope.resume();
+        var resumeAgain = scope.resume();
+
+        expect(resumeAgain).to.equal(false);
+      });
+    });
+
+    it('should set the pomodoro status to running', function() {
+      scope.resume();
+      
+      expect(scope.status).to.equal('running');
     });
 
     it('should resume a paused pomodoro timer', function() {
