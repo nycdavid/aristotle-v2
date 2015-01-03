@@ -1,13 +1,15 @@
 !!!
-%html{ :'ng-app' => 'AristotleApp' }
+%html{ :'ng-app' => 'AristotleApp', :'ng-controller' => 'TitleCtrl' }
   %head
-    %title{ :'title-time' => 'timeRemaining' }
+    %title
+      {{ time }}
     = javascript_include_tag 'users/application'
+    = csrf_meta_tags
   %body
     - flash.each do |name, msg|
       = content_tag :div, msg, rel: "#{name}-flash" 
     %nav
-      = link_to 'My Pursuits', user_pursuits_path
       - if user_signed_in?
+        = link_to 'My Pursuits', user_pursuits_path
         = link_to 'Logout', session_path, method: :delete
     = yield
