@@ -1,5 +1,5 @@
-//= require vendor/angular/angular.min
-//= require vendor/angular-resource/angular-resource.min
+//= require vendor/angular/angular
+//= require vendor/angular-resource/angular-resource
 //= require vendor/angular-mocks/angular-mocks
 //= require users/ng_pomodoro/services/pursuit_services
 //= require users/ng_pomodoro/services/pomodoro_services
