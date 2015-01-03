@@ -4,5 +4,5 @@ function TitleCtrl($scope, $rootScope, $http) {
     $scope.time = args.formattedTimeRemaining;
   });
 };
-TitleCtrl.$inject = ['$scope', '$http', '$rootScope'];
+TitleCtrl.$inject = ['$scope', '$rootScope', '$http'];
 AristotleApp.controller('TitleCtrl', TitleCtrl);
