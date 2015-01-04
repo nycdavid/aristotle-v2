@@ -28,7 +28,7 @@ function PomodoriCtrl($scope, $rootScope, $interval, $http, $resource, $window, 
     if ($scope.status == 'running') return false;
 
     $scope.status = 'running';
-    startTimer();
+    intervalPromise = startTimer();
   };
 
   // Private
@@ -67,5 +67,5 @@ function PomodoriCtrl($scope, $rootScope, $interval, $http, $resource, $window, 
 PomodoriCtrl.$inject = ['$scope', '$rootScope', '$interval', '$http', '$resource', '$window', 'pursuitsUrl', 'timeHelper', 'pomodoriHelper'];
 
 AristotleApp
-.constant('pursuitsUrl', 'http://localhost:3000/user/pursuits/')
+.constant('pursuitsUrl', '/user/pursuits/')
 .controller('PomodoriCtrl', PomodoriCtrl);
