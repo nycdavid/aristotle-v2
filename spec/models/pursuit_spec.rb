@@ -51,3 +51,16 @@ describe Pursuit, '#cumulative_time' do
     expect(@pursuit.cumulative_time).to eq(20)
   end
 end
+
+describe Pursuit, '#pomodori_count' do
+  before :each do
+    @pursuit = FactoryGirl.create(:pursuit)
+    3.times do
+      FactoryGirl.create(:pomodoro, { pursuit_id: @pursuit.id })
+    end
+  end
+
+  it 'should return the total number of pomodori that belong to self' do
+    expect(@pursuit.pomodori_count).to eq(3)
+  end
+end

@@ -12,5 +12,6 @@
         %td= link_to pursuit.name, user_pursuit_path(pursuit.id)
         %td.default-pomodoro-length= convert_total_seconds_of(pursuit.default_pomodoro_length)
         %td.cumulative-time= convert_total_seconds_of(pursuit.cumulative_time)
+        %td.pomodoro-count= pursuit.pomodori_count
         %td.actions
           = link_to('Edit', edit_user_pursuit_path(pursuit.id), { class: 'edit' })

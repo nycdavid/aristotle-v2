@@ -15,4 +15,8 @@ class Pursuit < ActiveRecord::Base
     pomodori.map { |pom| pom.elapsed_time }
             .inject(0) { |result, element| result + element } 
   end
+
+  def pomodori_count
+    pomodori.count
+  end
 end

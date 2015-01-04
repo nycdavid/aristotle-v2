@@ -1,6 +1,8 @@
 .module{ :'data-pursuit-name' => @pursuit.name }
   %h2= @pursuit.name
   = link_to 'Edit', edit_user_pursuit_path(@pursuit.id)
-  #cumulative-time
-    = convert_total_seconds_of(@pursuit.cumulative_time)
-  = link_to 'Start Pomodoro', new_user_pursuit_pomodoro_path(@pursuit.id)
+  .info
+    %p.pomodori-count Pomodori Count: #{@pursuit.pomodori_count}
+    #cumulative-time
+      = convert_total_seconds_of(@pursuit.cumulative_time)
+    = link_to 'Start Pomodoro', new_user_pursuit_pomodoro_path(@pursuit.id)
