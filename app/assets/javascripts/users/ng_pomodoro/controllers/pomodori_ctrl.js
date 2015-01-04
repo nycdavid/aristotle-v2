@@ -31,17 +31,16 @@ function PomodoriCtrl($scope, $rootScope, $interval, $http, $resource, $window, 
     intervalPromise = startTimer();
   };
 
+  $scope.quit = function() {
+    $interval.cancel(intervalPromise);
+    sendPomodoro(createPayload());
+  };
+
   // Private
   function checkTime() {
     if ($scope.timeRemaining == 0) {
       $interval.cancel(intervalPromise);
-      var payload = {
-        pomodoro: {
-          pursuit_id: $scope.pursuit.id,
-          elapsed_time: $scope.timeElapsed
-        }
-      };
-      sendPomodoro(payload); 
+      sendPomodoro(createPayload()); 
     }
   };
 
@@ -63,7 +62,17 @@ function PomodoriCtrl($scope, $rootScope, $interval, $http, $resource, $window, 
       checkTime();
     }, 1000);
   };
+
+  function createPayload() {
+    return {
+      pomodoro: {
+        pursuit_id: $scope.pursuit.id,
+        elapsed_time: $scope.timeElapsed
+      }
+    }
+  };
 };
+
 PomodoriCtrl.$inject = ['$scope', '$rootScope', '$interval', '$http', '$resource', '$window', 'pursuitsUrl', 'timeHelper', 'pomodoriHelper'];
 
 AristotleApp

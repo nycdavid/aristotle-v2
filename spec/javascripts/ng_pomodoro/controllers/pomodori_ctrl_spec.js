@@ -141,4 +141,19 @@ describe('PomodoriCtrl', function() {
       expect(scope.formattedTimeRemaining).to.equal('0:45');
     });
   });
+
+  describe('#quit', function() {
+    beforeEach(function() {
+      scope.show(1);
+      backend.flush();
+      mockInterval.flush(5000);
+    });
+
+    it('should send the pomodoro with the proper params', function() {
+      backend.expect('POST', '/user/pursuits/1/pomodori')
+             .respond(true);
+      scope.quit();
+      backend.flush();
+    });
+  });
 });
