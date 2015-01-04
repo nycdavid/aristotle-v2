@@ -8,7 +8,7 @@ describe('PomodoriCtrl', function() {
   
   beforeEach(angular.mock.inject(function($httpBackend) {
     backend = $httpBackend;
-    backend.expect('GET', 'http://localhost:3000/user/pursuits/1.json')
+    backend.expect('GET', '/user/pursuits/1.json')
            .respond({ id: 1, name: 'Practice violin', user_id: 1, default_pomodoro_length: 50 });
   }));
 
@@ -75,6 +75,19 @@ describe('PomodoriCtrl', function() {
         var pauseAgain = scope.pause();
 
         expect(pauseAgain).to.equal(false);
+      });
+    });
+
+    context('when the pomodoro has already been paused and resumed', function() {
+      it('should pause and resume an indefinite amount of times', function() {
+        expect(scope.formattedTimeRemaining).to.equal('0:50');
+        scope.pause();
+        scope.resume();
+        mockInterval.flush(1000);
+        expect(scope.formattedTimeRemaining).to.equal('0:49');
+        scope.pause();
+        mockInterval.flush(1000);
+        expect(scope.formattedTimeRemaining).to.equal('0:49');
       });
     });
 
