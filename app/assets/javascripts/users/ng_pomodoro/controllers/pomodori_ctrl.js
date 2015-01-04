@@ -52,6 +52,7 @@ function PomodoriCtrl($scope, $rootScope, $interval, $http, $resource, $window, 
 
   function redirectToPursuit() {
     $window.location.href = '/user/pursuits/' + $scope.pursuit.id;
+    alert('Pomodoro has completed!');
   };
 
   function startTimer() {
