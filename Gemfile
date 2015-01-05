@@ -23,6 +23,7 @@ gem 'spring',        group: :development
 
 gem 'haml'
 gem 'haml-rails'
+gem 'sass-rails'
 gem 'bower-rails'
 gem 'chronic'
 gem 'angular_rails_csrf'
