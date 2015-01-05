@@ -4,12 +4,17 @@
     %title
       {{ time }}
     = javascript_include_tag 'users/application'
+    = stylesheet_link_tag 'application', media: 'all'
     = csrf_meta_tags
-  %body
+  %body.container-fluid
     - flash.each do |name, msg|
       = content_tag :div, msg, rel: "#{name}-flash" 
-    %nav
+    %nav.module-side-nav.col-sm-2
       - if user_signed_in?
-        = link_to 'My Pursuits', user_pursuits_path
-        = link_to 'Logout', session_path, method: :delete
-    = yield
+        %ul
+          %li
+            = link_to 'My Pursuits', user_pursuits_path
+          %li
+            = link_to 'Logout', session_path, method: :delete
+    %section.module-main-content.col-sm-10
+      = yield
