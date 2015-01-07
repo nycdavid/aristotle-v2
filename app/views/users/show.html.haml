@@ -1,1 +1,4 @@
 .module{ rel: 'account-view', :'data-email' => @user.email }
+  %h2 Account Information
+  %ul
+    %li Region/Time Zone: #{region_lookup(@user.timezone)}

@@ -4,4 +4,7 @@
       = f.label :email, 'Email'
       = f.text_field :email, placeholder: 'new@youremail.com'
     .form-group
-      = f.submit 'Update account'
+      = f.label :timezone, 'Region'
+      = f.select :timezone, ActiveSupport::TimeZone::MAPPING, class: 'timezones'
+    .form-group
+      = f.submit 'Save'
