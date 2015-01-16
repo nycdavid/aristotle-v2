@@ -27,6 +27,7 @@ gem 'sass-rails'
 gem 'bower-rails'
 gem 'chronic'
 gem 'angular_rails_csrf'
+gem 'newrelic_rpm'
 
 group :production do
   gem 'rails_12factor'
