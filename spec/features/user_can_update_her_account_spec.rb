@@ -11,7 +11,7 @@ feature 'User can update their account' do
     visit edit_user_path
     new_email = Faker::Internet.email
     fill_in 'user[email]', with: new_email
-    click_button 'Update account'
+    click_button 'Save'
     expect(page).to have_selector '*[rel="success-flash"]'
     visit user_path
     expect(page).to have_selector "*[data-email=\"#{new_email}\"]"
@@ -20,7 +20,7 @@ feature 'User can update their account' do
   scenario 'User enters invalid information' do
     visit edit_user_path
     fill_in 'user[email]', with: ''
-    click_button 'Update account'
+    click_button 'Save'
     expect(page).to have_selector '*[rel="danger-flash"]'
   end
 end
