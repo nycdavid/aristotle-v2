@@ -39,16 +39,17 @@ describe Pursuit, '#default_pomodoro_length' do
   end
 end
 
-describe Pursuit, '#cumulative_time' do
+describe Pursuit, '::cumulative_time' do
   before :each do
     @pursuit = FactoryGirl.create :pursuit, { pomodoro_length_in_minutes: 15 }
     2.times do
       FactoryGirl.create :pomodoro, { pursuit_id: @pursuit.id }
     end
+    @pomodori_array = Pomodoro.all
   end
 
   it 'should return the total seconds put to the pursuit' do
-    expect(@pursuit.cumulative_time).to eq(20)
+    expect(Pursuit.cumulative_time(@pomodori_array)).to eq(20)
   end
 end
 
@@ -62,5 +63,19 @@ describe Pursuit, '#pomodori_count' do
 
   it 'should return the total number of pomodori that belong to self' do
     expect(@pursuit.pomodori_count).to eq(3)
+  end
+end
+
+describe Pursuit, '#todays_pomodori' do
+  before :each do
+    @pursuit = FactoryGirl.create(:pursuit)
+    3.times do
+      FactoryGirl.create(:pomodoro, { pursuit_id: @pursuit.id })
+      FactoryGirl.create(:pomodoro, { pursuit_id: @pursuit.id, created_at: 1.day.ago })
+    end
+  end
+
+  it 'should only return pomodori that were created today (America/New_York' do
+    expect(@pursuit.todays_pomodori('America/New_York').count).to eq(3)
   end
 end

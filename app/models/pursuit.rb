@@ -11,12 +11,22 @@ class Pursuit < ActiveRecord::Base
 
   before_save :convert_length_to_seconds!
 
-  def cumulative_time
-    pomodori.map { |pom| pom.elapsed_time }
-            .inject(0) { |result, element| result + element } 
+  def self.cumulative_time(pomodori_array)
+    pomodori_array.map { |pom| pom.elapsed_time }
+                  .inject(0) { |result, element| result + element } 
   end
 
   def pomodori_count
     pomodori.count
   end
+
+  def todays_pomodori(users_timezone)
+    pomodori.where('created_at > ?', 0.days.ago.beginning_of_day - timezone_offset(users_timezone))
+  end
+
+  private
+  def timezone_offset(timezone)
+    TZInfo::Timezone.get(timezone).current_period.utc_offset
+  end
+
 end
