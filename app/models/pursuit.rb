@@ -20,13 +20,13 @@ class Pursuit < ActiveRecord::Base
     pomodori.count
   end
 
-  def todays_pomodori(users_timezone)
-    pomodori.where('created_at > ?', 0.days.ago.beginning_of_day - timezone_offset(users_timezone))
+  def todays_pomodori
+    pomodori.where('created_at > ?', 0.days.ago.beginning_of_day + timezone_offset)
   end
 
   private
-  def timezone_offset(timezone)
-    TZInfo::Timezone.get(timezone).current_period.utc_offset
+  def timezone_offset
+    TZInfo::Timezone.get(user.timezone).current_period.utc_offset
   end
 
 end

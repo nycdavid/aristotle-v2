@@ -68,7 +68,8 @@ end
 
 describe Pursuit, '#todays_pomodori' do
   before :each do
-    @pursuit = FactoryGirl.create(:pursuit)
+    user = FactoryGirl.create(:user)
+    @pursuit = FactoryGirl.create(:pursuit, { user_id: user.id })
     3.times do
       FactoryGirl.create(:pomodoro, { pursuit_id: @pursuit.id })
       FactoryGirl.create(:pomodoro, { pursuit_id: @pursuit.id, created_at: 1.day.ago })
@@ -76,6 +77,6 @@ describe Pursuit, '#todays_pomodori' do
   end
 
   it 'should only return pomodori that were created today (America/New_York' do
-    expect(@pursuit.todays_pomodori('America/New_York').count).to eq(3)
+    expect(@pursuit.todays_pomodori.count).to eq(3)
   end
 end
