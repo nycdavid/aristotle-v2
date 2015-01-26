@@ -17,7 +17,7 @@ describe UsersController, 'authentication' do
 
     describe '#create' do
       it 'should respond with 302' do
-        post :create, { user: { email: 'joe@person.com', password: 'strongpass', password_confirmation: 'strongpass' } }
+        post :create, { user: { email: 'joe@person.com', password: 'strongpass', password_confirmation: 'strongpass', timezone: 'America/New_York' } }
         expect(response.status).to eq(302)
       end
     end
@@ -54,7 +54,7 @@ describe UsersController, 'authentication' do
 
     describe '#create' do
       it 'should respond with 200' do
-        post :create, { user: { email: 'joe@person.com', password: 'strongpass', password_confirmation: 'strongpass' } }
+        post :create, { user: { email: 'joe@person.com', password: 'strongpass', password_confirmation: 'strongpass', timezone: 'America/New_York' } }
         expect(response.status).to eq(302)
       end
     end

@@ -13,6 +13,7 @@ feature 'Guest can sign up' do
     fill_in 'user[email]', with: 'person@example.com'
     fill_in 'user[password]', with: 'astrongpassword'
     fill_in 'user[password_confirmation]', with: 'astrongpassword'
+    select('Eastern Time (US & Canada)', from: 'user[timezone]')
     click_button 'Sign Up'
 
     expect(page).to have_selector '*[rel="success-flash"]'
@@ -24,6 +25,7 @@ feature 'Guest can sign up' do
     fill_in 'user[email]', with: 'person@example.com'
     fill_in 'user[password]', with: 'something'
     fill_in 'user[password_confirmation]', with: 'somethingelse'
+    select('Eastern Time (US & Canada)', from: 'user[timezone]')
     click_button 'Sign Up'
 
     expect(page).to have_selector '*[rel="danger-flash"]'
