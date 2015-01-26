@@ -36,6 +36,10 @@ function PomodoriCtrl($scope, $rootScope, $interval, $http, $resource, $window, 
     sendPomodoro(createPayload());
   };
 
+  $scope.abort = function() {
+    $window.location.href = '/user/pursuits/' + $scope.pursuit.id;
+  };
+
   // Private
   function checkTime() {
     if ($scope.timeRemaining == 0) {
