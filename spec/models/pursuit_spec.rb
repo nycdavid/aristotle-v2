@@ -70,13 +70,46 @@ describe Pursuit, '#todays_pomodori' do
   before :each do
     user = FactoryGirl.create(:user)
     @pursuit = FactoryGirl.create(:pursuit, { user_id: user.id })
+  end
+
+  it 'should only return pomodori that were created today (America/New_York)' do
     3.times do
       FactoryGirl.create(:pomodoro, { pursuit_id: @pursuit.id })
       FactoryGirl.create(:pomodoro, { pursuit_id: @pursuit.id, created_at: 1.day.ago })
     end
+    expect(@pursuit.todays_pomodori.count).to eq(3)
   end
 
-  it 'should only return pomodori that were created today (America/New_York' do
-    expect(@pursuit.todays_pomodori.count).to eq(3)
+  context 'when close to the end of the day' do
+    it 'should return pomodori created earlier in the day' do
+      Timecop.travel(Chronic.parse('today 11:00')) do
+        3.times do
+          FactoryGirl.create(:pomodoro, { pursuit_id: @pursuit.id })
+        end
+      end
+      Timecop.travel(Chronic.parse('today 23:59'))
+      expect(@pursuit.todays_pomodori.count).to eq(3)
+    end
+  end
+
+  context 'when past midnight' do
+    it 'should not return the previous days pomodori' do
+      Timecop.travel(Chronic.parse('today 11:00')) do
+        3.times { FactoryGirl.create(:pomodoro, { pursuit_id: @pursuit.id }) } 
+      end
+      Timecop.travel(Chronic.parse('tomorrow 06:00'))
+      expect(@pursuit.todays_pomodori.count).to eq(0)
+    end
+  end
+
+  context 'when viewing pomodori at close to midnight' do
+    it 'should not return any pomodori prior to midnight in the timezone in which the user exists' do
+      Timecop.travel(Chronic.parse('yesterday 22:00')) { FactoryGirl.create(:pomodoro, { pursuit_id: @pursuit.id }) }
+      Timecop.travel(Chronic.parse('today 11:00')) do
+        3.times { FactoryGirl.create(:pomodoro, { pursuit_id: @pursuit.id }) }
+      end
+      Timecop.travel(Chronic.parse('today 23:59'))
+      expect(@pursuit.todays_pomodori.count).to eq(3)
+    end
   end
 end

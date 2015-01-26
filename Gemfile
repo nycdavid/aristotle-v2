@@ -43,6 +43,7 @@ group :test do
   gem 'faker'
   gem 'capybara-webkit'
   gem 'rack_session_access'
+  gem 'timecop'
 end
 
 group :test, :development do

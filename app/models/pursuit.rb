@@ -21,7 +21,7 @@ class Pursuit < ActiveRecord::Base
   end
 
   def todays_pomodori
-    pomodori.where('created_at > ?', 0.days.ago.beginning_of_day + timezone_offset)
+    pomodori.where('created_at > ?', (Time.now + timezone_offset).beginning_of_day - timezone_offset)
   end
 
   private
