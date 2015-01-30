@@ -26,9 +26,9 @@ describe('PomodoriCtrl', function() {
     clock.restore();
   });
 
-  var tick = function(ms) {
+  var tick = function(ms, intv) {
     clock.tick(ms);
-    mockInterval.flush(ms);
+    mockInterval.flush(intv || ms);
   };
 
   describe('initialization', function() {
@@ -61,12 +61,10 @@ describe('PomodoriCtrl', function() {
     it('should decrease timeRemaining by the elapsed time since the last tick', 
       function() {
 
-      clock.tick(1300);
-      mockInterval.flush(100);
+      tick(1300, 100);
       expect(scope.timeRemaining).to.equal(48700);
 
-      clock.tick(1700);
-      mockInterval.flush(100);
+      tick(1700, 100);
       expect(scope.timeRemaining).to.equal(47000);
     });
 
