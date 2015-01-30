@@ -11,6 +11,8 @@ gem 'uglifier', '>= 1.3.0'
 # See https://github.com/sstephenson/execjs#readme for more supported runtimes
 # gem 'therubyracer',  platforms: :ruby
 
+gem 'angularjs-rails'
+
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
@@ -24,7 +26,6 @@ gem 'spring',        group: :development
 gem 'haml'
 gem 'haml-rails'
 gem 'sass-rails'
-gem 'bower-rails'
 gem 'chronic'
 gem 'angular_rails_csrf'
 gem 'newrelic_rpm'
@@ -48,6 +49,7 @@ end
 
 group :test, :development do
   gem 'konacha', '~> 3.3.0'
+  gem "sinon-rails"
 end
 
 # Use ActiveModel has_secure_password

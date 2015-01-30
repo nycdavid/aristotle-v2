@@ -10,7 +10,7 @@ function PomodoriCtrl($scope, $rootScope, $interval, $http, $resource, $window, 
     $scope.pursuitsResource.get({ id: id })
       .$promise.then(function(data) {
         $scope.pursuit = data;
-        $scope.timeRemaining = data.default_pomodoro_length;
+        $scope.timeRemaining = data.default_pomodoro_length * 1000; // convert to milliseconds
         $scope.formattedTimeRemaining = timeHelper.timeRemainingString($scope);
 
         intervalPromise = startTimer();
@@ -38,7 +38,7 @@ function PomodoriCtrl($scope, $rootScope, $interval, $http, $resource, $window, 
 
   // Private
   function checkTime() {
-    if ($scope.timeRemaining == 0) {
+    if ($scope.timeRemaining <= 0) {
       $interval.cancel(intervalPromise);
       sendPomodoro(createPayload()); 
     }
@@ -56,19 +56,29 @@ function PomodoriCtrl($scope, $rootScope, $interval, $http, $resource, $window, 
   };
 
   function startTimer() {
+    var lastTick = new Date();
+
     return $interval(function() {
-      timeHelper.incrementTime($scope); 
+      var diff = new Date().getTime() - lastTick.getTime();
+      $scope.timeRemaining = $scope.timeRemaining - diff;
+
       $scope.formattedTimeRemaining = timeHelper.timeRemainingString($scope);
       $rootScope.$broadcast('timeUpdate', { formattedTimeRemaining: $scope.formattedTimeRemaining });
+
       checkTime();
-    }, 1000);
+
+      lastTick = new Date();
+    }, 100);
   };
 
   function createPayload() {
+    var elapsedTime = Math.round($scope.pursuit.default_pomodoro_length - 
+      ($scope.timeRemaining / 1000));
+
     return {
       pomodoro: {
         pursuit_id: $scope.pursuit.id,
-        elapsed_time: $scope.timeElapsed
+        elapsed_time: elapsedTime
       }
     }
   };

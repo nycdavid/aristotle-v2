@@ -3,10 +3,10 @@ angular
   .factory('timeHelper', function() {
     return {
       formatMinutes: function(totalSeconds) {
-        return parseInt(totalSeconds / 60, 10);
+        return parseInt((totalSeconds / 1000) / 60, 10);
       },
       formatSeconds: function(totalSeconds) {
-        var ss = totalSeconds % 60;
+        var ss = Math.round((totalSeconds / 1000) % 60);
         return ss < 10 ? '0' + ss : ss;
       },
       incrementTime: function(scope) {
