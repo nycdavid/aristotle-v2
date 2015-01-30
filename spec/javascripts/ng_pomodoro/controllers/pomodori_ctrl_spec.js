@@ -70,11 +70,6 @@ describe('PomodoriCtrl', function() {
       expect(scope.timeRemaining).to.equal(47000);
     });
 
-    it('should increase the timeElapsed by 1 every second', function() {
-      mockInterval.flush(1000);
-      expect(scope.timeElapsed).to.equal(1);
-    });
-
     it('should re-set the formattedTimeRemaining', function() {
       tick(1000);
       expect(scope.formattedTimeRemaining).to.equal('0:49');
@@ -172,8 +167,14 @@ describe('PomodoriCtrl', function() {
     });
 
     it('should send the pomodoro with the proper params', function() {
-      backend.expect('POST', '/user/pursuits/1/pomodori')
-             .respond(true);
+      var data = {
+        pomodoro: {
+          pursuit_id:   1,
+          elapsed_time: 5
+        }
+      };
+
+      backend.expect('POST', '/user/pursuits/1/pomodori', data).respond(true);
       scope.quit();
       backend.flush();
     });
