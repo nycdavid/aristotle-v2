@@ -5,22 +5,28 @@ describe('PomodoriCtrl', function() {
   var scope, ctrl, backend, mockInterval;
   var clock;
 
-  beforeEach(angular.mock.module('AristotleApp'));
-
-  beforeEach(angular.mock.inject(function($httpBackend) {
+  beforeEach(function() {
     var now = new Date();
     clock = sinon.useFakeTimers(now.getTime());
 
-    backend = $httpBackend;
-    backend.expect('GET', '/user/pursuits/1.json')
-           .respond({ id: 1, name: 'Practice violin', user_id: 1, default_pomodoro_length: 50 });
-  }));
+    angular.mock.module('AristotleApp');
+    angular.mock.inject(function($httpBackend, $rootScope, $controller, 
+      $interval) {
 
-  beforeEach(angular.mock.inject(function($controller, $rootScope, $http, $interval) {
-    scope = $rootScope.$new();
-    mockInterval = $interval;
-    ctrl = $controller('PomodoriCtrl', { $scope: scope, $http: $http, $interval: mockInterval });
-  }));
+      backend = $httpBackend;
+      backend.expect('GET', '/user/pursuits/1.json')
+             .respond({
+               id:                       1,
+               name:                     'Practice violin',
+               user_id:                  1,
+               default_pomodoro_length:  50
+             });
+
+      mockInterval = $interval;
+      scope = $rootScope.$new();
+      ctrl = $controller('PomodoriCtrl', {$scope: scope});
+    });
+  });
 
   afterEach(function() {
     clock.restore();
