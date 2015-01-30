@@ -1,6 +1,6 @@
-//= require vendor/angular-mocks/angular-mocks
 //= require angular
 //= require angular-resource
+//= require angular-mocks
 //= require sinon
 //= require users/ng_pomodoro/services/pursuit_services
 //= require users/ng_pomodoro/services/pomodoro_services
