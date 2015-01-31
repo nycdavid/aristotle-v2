@@ -45,6 +45,7 @@ group :test do
   gem 'capybara-webkit'
   gem 'rack_session_access'
   gem 'timecop'
+  gem 'poltergeist'
 end
 
 group :test, :development do
