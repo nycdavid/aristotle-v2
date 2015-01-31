@@ -9,15 +9,15 @@ describe('timeHelper', function() {
     context('when total seconds are perfectly divisible by 60', function() {
       it('should convert to minutes', function() {
         angular.mock.inject(function(timeHelper) {
-          expect(timeHelper.formatMinutes(300)).to.equal(5);
+          expect(timeHelper.formatMinutes(300000)).to.equal(5);
         });
       });
     });
 
-    context('when total seconds are not perfectly divisible by 60', function() {
+    context('when total milliseconds are not perfectly divisible by 60', function() {
       it('should convert to minutes', function() {
         angular.mock.inject(function(timeHelper) {
-          expect(timeHelper.formatMinutes(432)).to.equal(7);
+          expect(timeHelper.formatMinutes(432000)).to.equal(7);
         });
       });
     });
@@ -27,7 +27,7 @@ describe('timeHelper', function() {
     context('when the mod is less than 10', function() {
       it('should convert to ss seconds', function() {
         angular.mock.inject(function(timeHelper) {
-          expect(timeHelper.formatSeconds(305)).to.equal('05');
+          expect(timeHelper.formatSeconds(305000)).to.equal('05');
         });
       });
     });
@@ -35,7 +35,7 @@ describe('timeHelper', function() {
     context('when the mod is greater than 10', function() {
       it('should convert to ss seconds', function() {
         angular.mock.inject(function(timeHelper) {
-          expect(timeHelper.formatSeconds(311)).to.equal(11);
+          expect(timeHelper.formatSeconds(311000)).to.equal(11);
         });
       });
     });
@@ -71,7 +71,7 @@ describe('timeHelper', function() {
 
     beforeEach(function() {
       scope = {
-        timeRemaining: 105
+        timeRemaining: 105000
       };
     });
 
