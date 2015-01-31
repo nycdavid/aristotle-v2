@@ -42,8 +42,10 @@ group :test do
   gem 'pry'
   gem 'faker'
   gem 'capybara-webkit'
+  gem 'selenium-webdriver'
   gem 'rack_session_access'
   gem 'timecop'
+  gem 'poltergeist'
 end
 
 group :test, :development do
