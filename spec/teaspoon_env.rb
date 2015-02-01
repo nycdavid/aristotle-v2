@@ -44,6 +44,8 @@ Teaspoon.configure do |config|
     # Available: jasmine[1.3.1, 2.0.0], mocha[1.10.0, 1.17.1] qunit[1.12.0, 1.14.0]
     suite.use_framework :mocha
     suite.javascripts += ['support/sinon', 'support/chai', 'support/expect']
+    suite.matcher = 'spec/javascripts/ng_pomodoro/**/*.js'
+    suite.helper = 'ng_pomodoro/spec_helper.js'
 
     # Specify a file matcher as a regular expression and all matching files will be loaded when the suite is run. These
     # files need to be within an asset path. You can add asset paths using the `config.asset_paths`.

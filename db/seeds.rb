@@ -5,3 +5,7 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
+#
+# Seed data for Angular.js testing
+user = User.create(email: 'johndoe@person.com', password: 'foo', password_confirmation: 'foo', timezone: 'America/New_York')
+pursuit = Pursuit.create(name: 'Exercise', user_id: user.id, default_pomodoro_length: 1)

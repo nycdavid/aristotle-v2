@@ -50,6 +50,7 @@ end
 
 group :test, :development do
   gem 'teaspoon', '~> 0.8.0'
+  gem 'protractor-rails', '~> 0.0.13'
 end
 
 # Use ActiveModel has_secure_password
