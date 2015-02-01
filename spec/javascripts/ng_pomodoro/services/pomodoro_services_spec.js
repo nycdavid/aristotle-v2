@@ -1,5 +1,3 @@
-//= require spec_helper
-
 var context = describe;
 
 describe('pomodoriHelper', function() {

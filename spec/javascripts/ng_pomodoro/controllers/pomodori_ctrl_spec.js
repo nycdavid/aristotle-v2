@@ -1,5 +1,3 @@
-//= require spec_helper
-
 describe('PomodoriCtrl', function() {
   var context = describe;
   var scope, ctrl, backend, mockInterval;
