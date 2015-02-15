@@ -1,7 +1,7 @@
 class PursuitsController < ApplicationController
   layout 'users'
   before_action :ensure_authentication
-  before_action :fetch_pursuit, only: [:show, :edit, :update]
+  before_action :fetch_pursuit, only: [:show, :edit, :update, :destroy]
 
   def index
     @pursuits = current_user.pursuits
@@ -28,6 +28,16 @@ class PursuitsController < ApplicationController
 
   def update
     @pursuit.update_attributes(pursuit_params) ? allow_pursuit : refuse_pursuit
+  end
+
+  def destroy
+    if @pursuit.destroy
+      flash[:success] = 'Pursuit deleted.'
+      redirect_to user_pursuits_path
+    else
+      flash[:danger] = "Sorry! We weren't able to delete your pursuit. Please try again."
+      redirect_to user_pursuit_path(@pursuit.id)
+    end
   end
 
   private

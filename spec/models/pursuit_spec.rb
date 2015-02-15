@@ -113,3 +113,15 @@ describe Pursuit, '#todays_pomodori' do
     end
   end
 end
+
+describe Pursuit, 'dependent destroy' do
+  let(:pomodoro) { FactoryGirl.create(:pomodoro, :with_pursuit) }
+
+  context 'when deleting a pursuit' do
+    it 'should delete all related pomodori' do
+      pursuit = pomodoro.pursuit
+      pursuit.destroy
+      expect(pursuit.pomodori).to be_empty
+    end
+  end
+end

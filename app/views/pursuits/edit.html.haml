@@ -11,3 +11,4 @@
     = f.text_field :pomodoro_length_in_seconds
   .form-group
     = f.submit 'Save'
+    = link_to 'Delete Pursuit', user_pursuit_path(@pursuit.id), method: :delete, data: { confirm: 'Are you sure you want to delete this pursuit?' }
