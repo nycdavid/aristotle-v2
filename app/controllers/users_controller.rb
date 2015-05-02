@@ -27,6 +27,9 @@ class UsersController < ApplicationController
   def show
   end
 
+  def change_password
+  end
+
   private
     def fetch_user
       @user = current_user
