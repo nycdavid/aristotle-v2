@@ -26,7 +26,5 @@ module Aristotle
       generator.test_framework :rspec
     end
 
-    config.exceptions_app = self.routes
-
   end
 end
