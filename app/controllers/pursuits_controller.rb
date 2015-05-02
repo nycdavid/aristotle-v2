@@ -43,7 +43,7 @@ class PursuitsController < ApplicationController
   private
     def allow_pursuit
       flash[:success] = 'Pursuit successfully created! Now get crackin\'!'
-      redirect_to user_pursuits_path
+      redirect_to user_pursuit_path @pursuit.id
     end
 
     def refuse_pursuit

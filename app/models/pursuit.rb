@@ -5,11 +5,12 @@ class Pursuit < ActiveRecord::Base
 
   # Validations
   validates_presence_of :name, :user_id
+  validates :default_pomodoro_length, numericality: { greater_than: 0 }
 
   # Inclusions
   include TimeConversions
 
-  before_save :convert_length_to_seconds!
+  before_validation :convert_length_to_seconds!
 
   def self.cumulative_time(pomodori_array)
     pomodori_array.map { |pom| pom.elapsed_time }

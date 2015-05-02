@@ -25,7 +25,7 @@ describe PursuitsController, 'authentication' do
 
     describe '#create' do
       it 'should render create' do
-        post :create, { pursuit: { name: 'Working out', user_id: user.id } }
+        post :create, { pursuit: { name: 'Working out', pomodoro_length_in_seconds: 10, pomodoro_length_in_minutes: 0 } }
         expect(response.status).to eq(302)
       end
     end
@@ -46,7 +46,7 @@ describe PursuitsController, 'authentication' do
 
     describe '#update' do
       it 'should render update' do
-        put :update, { id: pursuit.id, pursuit: { name: 'Working out', user_id: user.id } }
+        put :update, { id: pursuit.id, pursuit: { name: 'Working out', pomodoro_length_in_minutes: 0, pomodoro_length_in_seconds: 10 } }
         expect(response.status).to eq(302)
       end
     end

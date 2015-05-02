@@ -9,11 +9,13 @@ feature 'User can edit a pursuit' do
 
   scenario 'User edits default pomodoro length by navigating to edit page' do
     visit edit_user_pursuit_path @pursuit
-    fill_in 'pursuit[pomodoro_length_in_minutes]', with: '15'
+    select "30", from: "pursuit_pomodoro_length_in_minutes"
+    select "00", from: "pursuit_pomodoro_length_in_seconds"
     click_button 'Save'
 
     expect(page).to have_selector '*[rel="success-flash"]'
-    expect(find("tr[data-pursuit-id='#{@pursuit.id}']").find('.default-pomodoro-length').text).to eq('00:15:00')
+    visit user_pursuits_path
+    expect(find("tr[data-pursuit-id='#{@pursuit.id}']").find('.default-pomodoro-length').text).to eq('00:30:00')
   end
 
   scenario 'User can edit a pursuit by clicking edit from show page' do

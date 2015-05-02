@@ -1,5 +1,5 @@
-.module{ :'data-pursuit-name' => @pursuit.name }
-  %h2= @pursuit.name
+.module
+  %h2{ rel: "pursuit-show" }= @pursuit.name
   = link_to 'Edit', edit_user_pursuit_path(@pursuit.id)
   .info
     %p.pomodori-count Pomodori Count: #{@pursuit.todays_pomodori.count}

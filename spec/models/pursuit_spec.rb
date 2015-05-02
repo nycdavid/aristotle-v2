@@ -27,11 +27,19 @@ describe Pursuit, 'validations' do
     expect(@pursuit).not_to be_valid
     expect(@pursuit.errors.messages[:user_id]).to include "can't be blank"
   end
+
+  it "should not allow 0 minutes and seconds" do
+    @pursuit.pomodoro_length_in_minutes = 0
+    @pursuit.pomodoro_length_in_seconds = 0
+
+    expect(@pursuit).not_to be_valid
+    expect(@pursuit.errors.messages[:default_pomodoro_length]).to include "must be greater than 0"
+  end
 end
 
 describe Pursuit, '#default_pomodoro_length' do
   before :each do
-    @pursuit = FactoryGirl.create :pursuit, { pomodoro_length_in_minutes: 15 }
+    @pursuit = FactoryGirl.create :pursuit, { pomodoro_length_in_minutes: 15, pomodoro_length_in_seconds: 0 }
   end
 
   it 'should convert length from %m:%s to seconds on storage' do

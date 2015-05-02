@@ -4,4 +4,9 @@
       = f.label :name, 'Name of Pursuit'
       = f.text_field :name, placeholder: 'Take over the world in time for dinner...'
     .form-group
+      = f.label :pomodoro_length_in_minutes, "Minutes"
+      = f.select :pomodoro_length_in_minutes, options_for_select(minute_selections)
+      = f.label :pomodoro_length_in_seconds, "Seconds"
+      = f.select :pomodoro_length_in_seconds, options_for_select(second_selections)
+    .form-group
       = f.submit 'Create'

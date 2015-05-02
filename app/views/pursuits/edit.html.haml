@@ -4,11 +4,10 @@
     = f.label :name, 'Name'
     = f.text_field :name
   .form-group
-    = label_tag 'Default Pomodoro Length'
-    = f.label :pomodoro_length_in_minutes, 'Minutes'
-    = f.text_field :pomodoro_length_in_minutes
-    = f.label :pomodoro_length_in_seconds, 'Seconds'
-    = f.text_field :pomodoro_length_in_seconds
+    = f.label :pomodoro_length_in_minutes, "Minutes"
+    = f.select :pomodoro_length_in_minutes, options_for_select(minute_selections, default_minutes)
+    = f.label :pomodoro_length_in_seconds, "Seconds"
+    = f.select :pomodoro_length_in_seconds, options_for_select(second_selections, default_seconds)
   .form-group
     = f.submit 'Save'
     = link_to 'Delete Pursuit', user_pursuit_path(@pursuit.id), method: :delete, data: { confirm: 'Are you sure you want to delete this pursuit?' }
