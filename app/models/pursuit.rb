@@ -12,22 +12,52 @@ class Pursuit < ActiveRecord::Base
 
   before_validation :convert_length_to_seconds!
 
-  def self.cumulative_time(pomodori_array)
-    pomodori_array.map { |pom| pom.elapsed_time }
-                  .inject(0) { |result, element| result + element } 
-  end
-
   def pomodori_count
     pomodori.count
   end
 
   def todays_pomodori
-    pomodori.where('created_at > ?', (Time.now + timezone_offset).beginning_of_day - timezone_offset)
+    all_pomodori("today")
+  end
+
+  def ranged_time(lower_bound=beginning_of_time, upper_bound=end_of_today)
+    Pursuit.
+      cumulative_time all_pomodori(lower_bound, upper_bound)
+  end
+
+  def all_pomodori(lower_bound=beginning_of_time, upper_bound=end_of_today)
+    pomodori.
+      where("created_at > ? AND created_at < ?", start_of_day(lower_bound), end_of_day(upper_bound))
   end
 
   private
-  def timezone_offset
-    TZInfo::Timezone.get(user.timezone).current_period.utc_offset
+
+  def start_of_day(date_string)
+    if date_string == "today"
+      date = users_timezone.now.beginning_of_day
+    elsif date_string == "overall"
+      date = Time.new(2000)
+    else
+      date = Time.strptime(date_string, "%Y%m%d").beginning_of_day
+    end
+    users_timezone.local_to_utc(date)
   end
 
+  def end_of_day(date_string)
+    date = Time.strptime(date_string, "%Y%m%d").end_of_day
+    users_timezone.local_to_utc(date)
+  end
+  
+  def users_timezone
+    TZInfo::Timezone.get(user.timezone)
+  end
+
+  def end_of_today
+    users_timezone.now.strftime("%Y%m%d")
+  end
+
+  def self.cumulative_time(pomodori_array)
+    pomodori_array.map { |pom| pom.elapsed_time }
+                  .inject(0) { |result, element| result + element } 
+  end
 end

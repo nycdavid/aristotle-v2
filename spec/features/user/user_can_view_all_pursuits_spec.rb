@@ -13,7 +13,6 @@ feature 'User can view all Pursuits' do
     pursuit = Pursuit.first
     visit user_pursuits_path
     expect(page.all('.pursuit').count).to eq(5)
-    expect(page.find("tr[data-pursuit-id=\"#{pursuit.id}\"]").find('.cumulative-time').text).to eq('00:00:00')
   end
 
   scenario 'User navigates to Pursuit index from dashboard' do
@@ -26,6 +25,6 @@ feature 'User can view all Pursuits' do
     pursuit = FactoryGirl.create(:pursuit, { user_id: @user.id })
     FactoryGirl.create(:pomodoro, { pursuit_id: pursuit.id, elapsed_time: 175 })
     visit user_pursuits_path
-    expect(page.find("tr[data-pursuit-id=\"#{pursuit.id}\"]").find('.cumulative-time').text).to eq('00:02:55')
+    expect(page.find("tr[data-pursuit-id=\"#{pursuit.id}\"]").find('.time-and-count').text).to eq('1 / 00:02:55')
   end
 end

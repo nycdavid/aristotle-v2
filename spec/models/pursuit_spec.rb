@@ -133,3 +133,48 @@ describe Pursuit, 'dependent destroy' do
     end
   end
 end
+
+describe Pursuit, "#ranged_time" do
+  let(:user) { FactoryGirl.create :user }
+  let(:users_timezone) { TZInfo::Timezone.get(user.timezone) }
+  let(:pursuit) { FactoryGirl.create :pursuit, user_id: user.id }
+
+  before :each do
+  end
+
+  context "when passed today as a param" do
+    it "should return only the amount of seconds completed today" do
+      Timecop.
+        travel(users_timezone.local_to_utc(Chronic.parse("today 1:00 AM"))) { FactoryGirl.create(:pomodoro, pursuit_id: pursuit.id) }
+      Timecop.
+        travel(users_timezone.local_to_utc(Chronic.parse("today 11:00 PM"))) { FactoryGirl.create(:pomodoro, pursuit_id: pursuit.id) }
+      time = pursuit.ranged_time "today"
+
+      expect(time).to eq(20)
+    end
+  end
+
+  context "when passed overall as a param" do
+    it "should return the amount of seconds put toward the Pursuit overall" do
+      Timecop.travel(3.days.ago) { FactoryGirl.create(:pomodoro, pursuit_id: pursuit.id) }
+      Timecop.travel(4.days.ago) { FactoryGirl.create(:pomodoro, pursuit_id: pursuit.id) }
+      time = pursuit.ranged_time "overall"
+
+      expect(time).to eq(20)
+    end
+  end
+
+  context "when passed a range of two dates" do
+    it "should calculate properly for edge cases" do
+      Timecop.travel(users_timezone.local_to_utc(Chronic.parse("05/01/15 1:00 AM"))) do
+        FactoryGirl.create(:pomodoro, pursuit_id: pursuit.id)
+      end
+      Timecop.travel(users_timezone.local_to_utc(Chronic.parse("05/01/15 11:00 PM"))) do
+        FactoryGirl.create(:pomodoro, pursuit_id: pursuit.id)
+      end
+      time = pursuit.ranged_time("20150501", "20150501")
+
+      expect(time).to eq(20)
+    end
+  end
+end

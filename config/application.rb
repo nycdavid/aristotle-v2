@@ -25,6 +25,5 @@ module Aristotle
       generator.template_engine :haml
       generator.test_framework :rspec
     end
-
   end
 end

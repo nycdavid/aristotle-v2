@@ -5,6 +5,7 @@ class PursuitsController < ApplicationController
 
   def index
     @pursuits = current_user.pursuits
+    @range = params[:range].nil? ? "overall" : params[:range]
   end
 
   def new
