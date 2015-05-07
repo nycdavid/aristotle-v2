@@ -16,18 +16,10 @@ class Pursuit < ActiveRecord::Base
     pomodori.count
   end
 
-  def todays_pomodori
-    all_pomodori("today")
-  end
-
-  def ranged_time(lower_bound=beginning_of_time, upper_bound=end_of_today)
-    Pursuit.
-      cumulative_time all_pomodori(lower_bound, upper_bound)
-  end
-
-  def all_pomodori(lower_bound=beginning_of_time, upper_bound=end_of_today)
-    pomodori.
+  def ranged_pomodori(lower_bound=beginning_of_time, upper_bound=end_of_today)
+    pomodori = self.pomodori.
       where("created_at > ? AND created_at < ?", start_of_day(lower_bound), end_of_day(upper_bound))
+    { count: pomodori.count, time: pomodori.sum("elapsed_time") }
   end
 
   private
@@ -54,10 +46,5 @@ class Pursuit < ActiveRecord::Base
 
   def end_of_today
     users_timezone.now.strftime("%Y%m%d")
-  end
-
-  def self.cumulative_time(pomodori_array)
-    pomodori_array.map { |pom| pom.elapsed_time }
-                  .inject(0) { |result, element| result + element } 
   end
 end

@@ -47,20 +47,6 @@ describe Pursuit, '#default_pomodoro_length' do
   end
 end
 
-describe Pursuit, '::cumulative_time' do
-  before :each do
-    @pursuit = FactoryGirl.create :pursuit, { pomodoro_length_in_minutes: 15 }
-    2.times do
-      FactoryGirl.create :pomodoro, { pursuit_id: @pursuit.id }
-    end
-    @pomodori_array = Pomodoro.all
-  end
-
-  it 'should return the total seconds put to the pursuit' do
-    expect(Pursuit.cumulative_time(@pomodori_array)).to eq(20)
-  end
-end
-
 describe Pursuit, '#pomodori_count' do
   before :each do
     @pursuit = FactoryGirl.create(:pursuit)
@@ -80,46 +66,7 @@ describe Pursuit, '#todays_pomodori' do
     @pursuit = FactoryGirl.create(:pursuit, { user_id: user.id })
   end
 
-  it 'should only return pomodori that were created today (America/New_York)' do
-    3.times do
-      FactoryGirl.create(:pomodoro, { pursuit_id: @pursuit.id })
-      FactoryGirl.create(:pomodoro, { pursuit_id: @pursuit.id, created_at: 1.day.ago })
-    end
-    expect(@pursuit.todays_pomodori.count).to eq(3)
-  end
-
-  context 'when close to the end of the day' do
-    it 'should return pomodori created earlier in the day' do
-      Timecop.travel(Chronic.parse('today 11:00')) do
-        3.times do
-          FactoryGirl.create(:pomodoro, { pursuit_id: @pursuit.id })
-        end
-      end
-      Timecop.travel(Chronic.parse('today 23:59'))
-      expect(@pursuit.todays_pomodori.count).to eq(3)
-    end
-  end
-
-  context 'when past midnight' do
-    it 'should not return the previous days pomodori' do
-      Timecop.travel(Chronic.parse('today 11:00')) do
-        3.times { FactoryGirl.create(:pomodoro, { pursuit_id: @pursuit.id }) } 
-      end
-      Timecop.travel(Chronic.parse('tomorrow 06:00'))
-      expect(@pursuit.todays_pomodori.count).to eq(0)
-    end
-  end
-
-  context 'when viewing pomodori at close to midnight' do
-    it 'should not return any pomodori prior to midnight in the timezone in which the user exists' do
-      Timecop.travel(Chronic.parse('yesterday 22:00')) { FactoryGirl.create(:pomodoro, { pursuit_id: @pursuit.id }) }
-      Timecop.travel(Chronic.parse('today 11:00')) do
-        3.times { FactoryGirl.create(:pomodoro, { pursuit_id: @pursuit.id }) }
-      end
-      Timecop.travel(Chronic.parse('today 23:59'))
-      expect(@pursuit.todays_pomodori.count).to eq(3)
-    end
-  end
+  
 end
 
 describe Pursuit, 'dependent destroy' do
@@ -134,13 +81,10 @@ describe Pursuit, 'dependent destroy' do
   end
 end
 
-describe Pursuit, "#ranged_time" do
+describe Pursuit, "#ranged_pomodori" do
   let(:user) { FactoryGirl.create :user }
   let(:users_timezone) { TZInfo::Timezone.get(user.timezone) }
   let(:pursuit) { FactoryGirl.create :pursuit, user_id: user.id }
-
-  before :each do
-  end
 
   context "when passed today as a param" do
     it "should return only the amount of seconds completed today" do
@@ -148,19 +92,23 @@ describe Pursuit, "#ranged_time" do
         travel(users_timezone.local_to_utc(Chronic.parse("today 1:00 AM"))) { FactoryGirl.create(:pomodoro, pursuit_id: pursuit.id) }
       Timecop.
         travel(users_timezone.local_to_utc(Chronic.parse("today 11:00 PM"))) { FactoryGirl.create(:pomodoro, pursuit_id: pursuit.id) }
-      time = pursuit.ranged_time "today"
+      time = pursuit.ranged_pomodori("today")[:time]
 
       expect(time).to eq(20)
     end
   end
 
   context "when passed overall as a param" do
-    it "should return the amount of seconds put toward the Pursuit overall" do
+    before :each do
       Timecop.travel(3.days.ago) { FactoryGirl.create(:pomodoro, pursuit_id: pursuit.id) }
       Timecop.travel(4.days.ago) { FactoryGirl.create(:pomodoro, pursuit_id: pursuit.id) }
-      time = pursuit.ranged_time "overall"
+    end
 
-      expect(time).to eq(20)
+    it "should return the amount of seconds put toward the Pursuit overall" do
+      pomodori = pursuit.ranged_pomodori "overall"
+
+      expect(pomodori[:time]).to eq(20)
+      expect(pomodori[:count]).to eq(2)
     end
   end
 
@@ -172,7 +120,7 @@ describe Pursuit, "#ranged_time" do
       Timecop.travel(users_timezone.local_to_utc(Chronic.parse("05/01/15 11:00 PM"))) do
         FactoryGirl.create(:pomodoro, pursuit_id: pursuit.id)
       end
-      time = pursuit.ranged_time("20150501", "20150501")
+      time = pursuit.ranged_pomodori("20150501", "20150501")[:time]
 
       expect(time).to eq(20)
     end

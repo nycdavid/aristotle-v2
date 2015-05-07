@@ -3,7 +3,7 @@
   = link_to "Daily", "/user/pursuits?range=today"
   |
   = link_to "Overall", "/user/pursuits?range=overall"
-%table.table
+%table.table.pursuits
   %thead
     %tr 
       %th Name
@@ -13,6 +13,11 @@
     - @pursuits.each do |pursuit|
       %tr.pursuit{ :'data-pursuit-id' => pursuit.id, :'data-pursuit-name' => pursuit.name }
         %td= link_to pursuit.name, user_pursuit_path(pursuit.id)
-        %td.time-and-count #{pursuit.all_pomodori(@range).count} / #{convert_total_seconds_of(pursuit.ranged_time(@range))}
+        %td.time-and-count #{pursuit.ranged_pomodori(@range)[:count]} / #{convert_total_seconds_of(pursuit.ranged_pomodori(@range)[:time])}
         %td.actions
           = link_to('Edit', edit_user_pursuit_path(pursuit.id), { class: 'edit' })
+  - if @range == "today"
+    %tfoot.summary
+      %td
+      %td.summary__time{ rel: "pomodori-time" }= convert_total_seconds_of(current_user.todays_productivity[:time])
+      %td
