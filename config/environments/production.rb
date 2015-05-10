@@ -88,4 +88,6 @@ Rails.application.configure do
     domain: "heroku.com",
     enable_starttls_auto: true
   }
+
+  config.action_mailer.default_url_options = { host: "http://rocky-ridge-2764.herokuapp.com" }
 end
