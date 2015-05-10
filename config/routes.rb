@@ -9,6 +9,7 @@ Rails.application.routes.draw do
   match '/404', to: 'errors#not_found', via: :all
   resource :session, only: [:create, :destroy]
   resources :users, only: [:create]
+  resources :password_resets, only: [:new, :create, :edit, :index, :update]
 
   # Private routes
   resource :user, only: [:update, :edit, :show] do

@@ -24,3 +24,33 @@ describe User, "#todays_productivity" do
     expect(user.todays_productivity).to eq({ time: 30, pomodori: 3 })
   end
 end
+
+describe User, "#password_reset_expired?" do
+  let (:user) { FactoryGirl.build :user }
+
+  it "should return true if password reset was initiated over two hours ago" do
+    user.reset_sent_at = 3.hours.ago
+    user.save
+
+    expect(user.password_reset_expired?).to eq true
+  end
+
+  it "should return false if password reset was initiated less than two hours ago" do
+    user.reset_sent_at = 1.hour.ago
+    user.save
+
+    expect(user.password_reset_expired?).to eq false
+  end
+end
+
+describe User, "valid_reset_token?" do
+  let (:user) { FactoryGirl.create :user, reset_digest: Digest::SHA2.hexdigest("foobar") }
+
+  it "should return true if password reset was initiated over two hours ago" do
+    expect(user.valid_reset_token?("foobar")).to eq true
+  end
+
+  it "should return false if password reset was initiated less than two hours ago" do
+    expect(user.valid_reset_token?("barfoo")).to eq false 
+  end
+end

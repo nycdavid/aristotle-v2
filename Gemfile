@@ -1,5 +1,4 @@
-source 'https://rubygems.org'
-
+source 'https://rubygems.org' 
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.1.6'
@@ -50,6 +49,7 @@ end
 group :test, :development do
   gem 'teaspoon', '~> 0.8.0'
   gem 'protractor-rails', '~> 0.0.13'
+  gem "letter_opener"
 end
 
 # Use ActiveModel has_secure_password

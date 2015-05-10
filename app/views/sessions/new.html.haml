@@ -5,6 +5,7 @@
       = text_field_tag 'user[email]', nil, placeholder: 'Email', class: 'form-control'
     .form-group
       %label{ for: 'password' } Password
+      = link_to "Forgot Password?", new_password_reset_path 
       = password_field_tag 'user[password]', nil, placeholder: 'Password', class: 'form-control'
     .form-group
       = button_tag 'Login'
