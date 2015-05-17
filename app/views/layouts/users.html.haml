@@ -5,6 +5,7 @@
       {{ time }}
     = javascript_include_tag 'users/application'
     = stylesheet_link_tag 'shared', media: 'all'
+    = stylesheet_link_tag "users/application"
     = csrf_meta_tags
   %body.container-fluid
     - flash.each do |name, msg|
