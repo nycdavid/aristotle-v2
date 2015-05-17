@@ -10,6 +10,7 @@ Rails.application.config.assets.precompile += %w(
   support/sinon.js
   support/chai.js
   support/expect.js
+  shared.css
 )
 
 # Precompile additional assets.
