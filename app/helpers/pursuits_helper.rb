@@ -24,6 +24,14 @@ module PursuitsHelper
     @pursuit.default_pomodoro_length - (@pursuit.default_pomodoro_length / 60) * 60
   end
 
+  def context_link(context)
+    if context == @range
+      content_tag(:strong, context.capitalize)
+    else
+      link_to context.capitalize, "/user/pursuits?range=#{context}"
+    end
+  end
+
   private
 
   def hours

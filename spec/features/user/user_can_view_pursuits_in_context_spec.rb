@@ -19,15 +19,16 @@ feature "User can view pursuits in context" do
   
   scenario "User clicks on daily view" do
     visit user_pursuits_path
-    click_link "Daily"
+    click_link "Today"
    
     expect(page).to have_content "2 / 00:00:20"
+    expect(page.find("div[rel='pursuits-context']")).not_to have_selector "a[href='/user/pursuits?range=today']"
   end
 
   scenario "User clicks on overall view" do
     visit user_pursuits_path
-    click_link "Overall"
 
     expect(page).to have_content "3 / 00:00:30"
+    expect(page.find("div[rel='pursuits-context']")).not_to have_selector "a[href='/user/pursuits?range=overall']"
   end
 end

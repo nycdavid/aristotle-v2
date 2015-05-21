@@ -43,3 +43,23 @@ describe PursuitsHelper, '#convert_total_seconds_of' do
     end
   end
 end
+
+describe PursuitsHelper, "#context_link" do
+  context "when the context matches the @range" do
+    it "should return a strong tag with the context" do
+      self.instance_variable_set(:@range, "today")
+      result = context_link "today"
+
+      expect(result).to eq "<strong>Today</strong>"
+    end
+  end
+
+  context "when the context does not match" do
+    it "should return a link to the context" do
+      self.instance_variable_set(:@range, "not_today")
+      result = context_link "today"
+
+      expect(result).to eq "<a href=\"/user/pursuits?range=today\">Today</a>"
+    end
+  end
+end
