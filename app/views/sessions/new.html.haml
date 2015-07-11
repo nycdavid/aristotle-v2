@@ -1,11 +1,13 @@
-.module-login-form{ rel: 'login' }
-  = form_tag session_path, method: 'post' do
-    .form-group
-      %label{ for: 'email' } Email
-      = text_field_tag 'user[email]', nil, placeholder: 'Email', class: 'form-control'
-    .form-group
-      %label{ for: 'password' } Password
-      = link_to "Forgot Password?", new_password_reset_path 
-      = password_field_tag 'user[password]', nil, placeholder: 'Password', class: 'form-control'
-    .form-group
-      = button_tag 'Login'
+.login.branding.branding--login
+  = image_tag "landing/logo.png", alt: "Aristotle", class: "branding__logo branding__logo--login"
+  .login__form{ rel: "login" }
+    = form_tag session_path, method: "post" do
+      %div
+        %label{ for: "email" } Email
+        = text_field_tag "user[email]", nil
+      %div
+        %label{ for: "password" } Password
+        = password_field_tag "user[password]", nil
+      %div
+        = button_tag "Login", class: "btn btn-lg btn-clear branding-controls__control branding-controls__control--login"
+        = link_to "Forgot Password?", new_password_reset_path, class: "btn btn-lg btn-clear branding-controls__control branding-controls__control--login"

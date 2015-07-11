@@ -1,0 +1,15 @@
+.login {
+  &__form label {
+    font-size: 13px;
+  }
+
+  &__form input {
+    padding: 7px 8px;
+    font-size: 13px;
+    min-height: 34px;
+    width: 100%;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    margin-bottom: 15px;
+  }
+}

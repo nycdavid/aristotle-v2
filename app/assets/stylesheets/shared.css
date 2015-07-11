@@ -12,6 +12,7 @@
  *
  *= require bootstrap
  *= require bootstrap-theme
+ *= require_tree ./shared_blocks
  *= require body
  *= require_self
  */

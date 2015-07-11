@@ -11,6 +11,8 @@ feature 'Guest can sign up' do
 
   scenario 'Guest goes to sign up page and enters valid information' do
     fill_in 'user[email]', with: 'person@example.com'
+    fill_in "user[first_name]", with: "John"
+    fill_in "user[last_name]", with: "Doe"
     fill_in 'user[password]', with: 'astrongpassword'
     fill_in 'user[password_confirmation]', with: 'astrongpassword'
     select('Eastern Time (US & Canada)', from: 'user[timezone]')

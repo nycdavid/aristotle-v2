@@ -11,6 +11,8 @@ feature "User can update their account" do
     visit edit_user_path
     new_email = Faker::Internet.email
     fill_in "user[email]", with: new_email
+    fill_in "user[first_name]", with: "Joe"
+    fill_in "user[last_name]", with: "Schmo"
     click_button "Save"
     expect(page).to have_selector "*[rel='success-flash']"
     visit user_path

@@ -19,7 +19,7 @@ feature 'User can login' do
     page.set_rack_session(user_id: @user.id)
     visit root_path
     
-    expect(page).to have_link 'My Pursuits'
+    expect(page).to have_link 'Pursuits'
     expect(page).not_to have_link 'Sign Up'
     expect(page).not_to have_link 'Login'
   end

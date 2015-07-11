@@ -25,6 +25,7 @@ gem 'spring',        group: :development
 gem 'haml'
 gem 'haml-rails'
 gem 'sass-rails'
+gem "font-awesome-rails"
 gem 'chronic'
 gem 'angular_rails_csrf'
 gem 'newrelic_rpm'

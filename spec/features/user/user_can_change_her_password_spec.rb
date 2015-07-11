@@ -9,7 +9,7 @@ feature "User can change her password" do
 
   scenario "User changes her password successfully" do
     visit user_path
-    click_link "Edit Account"
+    click_link "edit-account"
     click_link "Change Password"
     fill_in "user[password]", with: "foobar"
     fill_in "user[password_confirmation]", with: "foobar"

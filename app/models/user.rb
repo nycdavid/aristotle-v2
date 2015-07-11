@@ -6,6 +6,10 @@ class User < ActiveRecord::Base
 
   validates_presence_of :email, :timezone
 
+  def full_name
+    "#{first_name} #{last_name}"
+  end
+
   def todays_productivity
     {
       time: pursuits.map { |pursuit| pursuit.ranged_pomodori("today")[:time] }.sum,

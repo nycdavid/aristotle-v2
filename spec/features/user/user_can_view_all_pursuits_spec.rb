@@ -17,7 +17,7 @@ feature 'User can view all Pursuits' do
 
   scenario 'User navigates to Pursuit index from dashboard' do
     visit user_path
-    click_link 'My Pursuits'
+    click_link 'Pursuits'
     expect(page.all('.pursuit').count).to eq(5)
   end
 

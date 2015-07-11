@@ -6,18 +6,25 @@
     = javascript_include_tag 'users/application'
     = stylesheet_link_tag 'shared', media: 'all'
     = stylesheet_link_tag "users/application"
+    %link{ href: "http://fonts.googleapis.com/css?family=Open+Sans", rel: "stylesheet", type: "text/css" }
     = csrf_meta_tags
-  %body.container-fluid
+  %body
     - flash.each do |name, msg|
       = content_tag :div, msg, rel: "#{name}-flash" 
-    %nav.module-side-nav.col-sm-2
+    %nav.side-nav
       - if user_signed_in?
         %ul
-          %li
-            = link_to 'My Pursuits', "/user/pursuits?range=today"
-          %li
-            = link_to 'Edit Account', edit_user_path
-          %li
-            = link_to 'Logout', session_path, method: :delete
-    %section.module-main-content.col-sm-10
+          %li.nav-link.user-avatar
+            = link_to edit_user_path, id: "edit-account" do
+              = image_tag gravatar_image_url, alt: "User's Gravatar", class: "user-avatar__image"
+              %p.user-avatar__name= display_name
+          %li.side-nav__pursuits.nav-link.nav-link--normal{ class: active?("pursuits-index") }
+            = link_to "/user/pursuits?range=today" do
+              %i.fa.fa-clock-o.nav-link__icon
+              %p Pursuits
+          %li.side-nav__logout.nav-link.nav-link--normal
+            = link_to session_path, method: :delete do
+              %i.fa.fa-power-off.nav-link__icon
+              %p Logout
+    %section.main-content
       = yield

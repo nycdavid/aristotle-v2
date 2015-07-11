@@ -1,6 +1,8 @@
 !!!
 %html
   %head
+    %link{ href: "http://fonts.googleapis.com/css?family=Oswald:400,300", rel: "stylesheet", type: "text/css" }
+    = stylesheet_link_tag "sessions/application", media: "all"
   %body
     - flash.each do |name, msg|
       = content_tag :div, msg, rel: "#{name}-flash" 
