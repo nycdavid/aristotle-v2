@@ -10,7 +10,7 @@ module UsersHelper
 
   def display_name
     if current_user.full_name == " "
-      current_user.email
+      truncate current_user.email, length: 20
     else
       current_user.full_name
     end
