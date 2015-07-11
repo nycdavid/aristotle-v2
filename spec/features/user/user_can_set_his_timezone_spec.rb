@@ -8,7 +8,7 @@ feature 'User can set his timezone' do
 
   scenario 'User clicks on settings link in side nav' do
     visit user_path
-    click_link 'Edit Account'
+    click_link 'edit-account'
     select('Eastern Time (US & Canada)', from: 'user[timezone]')
     click_button 'Save'
     expect(page).to have_content 'Region/Time Zone: Eastern Time (US & Canada)'

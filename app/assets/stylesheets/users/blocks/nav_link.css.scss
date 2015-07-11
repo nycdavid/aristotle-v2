@@ -1,0 +1,23 @@
+.nav-link {
+  &--active.nav-link--active a {
+    color: #fff;
+    background-color: #2b384e;
+  }
+
+  &--normal a {
+    color: #899dc1;
+    display: inline-block;
+    width: 100%;
+    padding: 12px 0 12px 0;
+
+    &:hover {
+      color: #fff;
+      background-color: #2b384e;
+    }
+  }
+
+  &__icon {
+    font-size: 32px;
+    margin-bottom: 6px;
+  }
+}

@@ -54,3 +54,11 @@ describe User, "valid_reset_token?" do
     expect(user.valid_reset_token?("barfoo")).to eq false 
   end
 end
+
+describe User, "#full_name" do
+  let (:user) { FactoryGirl.create :user, first_name: "John", last_name: "Doe" }
+  
+  it "should return the user's full name" do
+    expect(user.full_name).to eq "John Doe"
+  end
+end
