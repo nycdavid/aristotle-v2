@@ -12,7 +12,7 @@ module UsersHelper
     if current_user.full_name == " "
       truncate current_user.email, length: 20
     else
-      current_user.full_name
+      truncate current_user.full_name, length: 20
     end
   end
 
