@@ -1,0 +1,13 @@
+@import "../../shared/modules";
+
+.section-heading {
+  padding: 20px;
+  font-family: $open-sans;
+  background-color: #e9edf2;
+  border-bottom: 1px solid #dee2e8;
+
+  &__text {
+    position: relative;
+    left: 20px;
+  }
+}

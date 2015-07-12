@@ -24,11 +24,4 @@ feature 'User can edit a pursuit' do
 
     expect(page).to have_content "Edit: #{@pursuit.name}"
   end
-
-  scenario 'User can edit a pursuit by clicking edit from the PursuitsIndex page' do
-    visit user_pursuits_path
-    page.find("tr.pursuit[data-pursuit-id=\"#{@pursuit.id}\"]").find('td.actions').click_link('Edit')
-
-    expect(page).to have_content "Edit: #{@pursuit.name}"
-  end
 end

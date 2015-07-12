@@ -1,3 +1,5 @@
+.section-heading
+  %h2.section-heading__text Pursuits
 = link_to 'New Pursuit', new_user_pursuit_path
 %div
   = link_to "Daily", "/user/pursuits?range=today"
@@ -8,14 +10,15 @@
     %tr 
       %th Name
       %th #{@range.capitalize} Pomodori / Time
-      %th Actions
+      %th
   %tbody
     - @pursuits.each do |pursuit|
       %tr.pursuit{ :'data-pursuit-id' => pursuit.id, :'data-pursuit-name' => pursuit.name }
         %td= link_to pursuit.name, user_pursuit_path(pursuit.id)
         %td.time-and-count #{pursuit.ranged_pomodori(@range)[:count]} / #{convert_total_seconds_of(pursuit.ranged_pomodori(@range)[:time])}
         %td.actions
-          = link_to('Edit', edit_user_pursuit_path(pursuit.id), { class: 'edit' })
+          = link_to "Start", new_user_pursuit_pomodoro_path(pursuit.id), class: "btn btn-xs btn-clear branding-controls__control branding-controls__control--small"
+
   - if @range == "today"
     %tfoot.summary
       %td

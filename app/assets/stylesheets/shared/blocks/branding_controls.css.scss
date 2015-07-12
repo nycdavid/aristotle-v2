@@ -12,6 +12,10 @@
     transition: background-color .2s linear, color .2s linear;
     font-family: $oswald;
     font-weight: 300;
+
+    &--small {
+      font-size: 12px;
+    }
   }
 
   &__control.branding-controls__control:hover {
