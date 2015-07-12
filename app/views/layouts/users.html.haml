@@ -4,12 +4,12 @@
     %title= timer_display
     = stylesheet_link_tag "users/application"
     = stylesheet_link_tag "shared/application"
-    = javascript_include_tag 'users/application'
+    = javascript_include_tag "users/application"
     %link{ href: "http://fonts.googleapis.com/css?family=Open+Sans", rel: "stylesheet", type: "text/css" }
     = csrf_meta_tags
   %body
     - flash.each do |name, msg|
-      = content_tag :div, msg, rel: "#{name}-flash" 
+      = content_tag :div, content_tag(:span, msg, class: "notification__text"), rel: "#{name}-flash", class: "notification notification--#{name}"
     %nav.side-nav
       - if user_signed_in?
         %ul

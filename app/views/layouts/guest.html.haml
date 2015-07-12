@@ -5,9 +5,8 @@
     = stylesheet_link_tag "shared/application", media: 'all'
     = stylesheet_link_tag "guest/application", media: 'all'
     %link{ href: "http://fonts.googleapis.com/css?family=Oswald:400,300", rel: "stylesheet", type: "text/css" }
-    = javascript_include_tag 'application'
     = csrf_meta_tags
   %body
     - flash.each do |name, msg|
-      = content_tag :div, msg, rel: "#{name}-flash" 
+      = content_tag :div, content_tag(:span, msg, class: "notification__text"), rel: "#{name}-flash", class: "notification notification--#{name}"
     = yield
