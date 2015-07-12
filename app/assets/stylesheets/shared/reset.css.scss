@@ -1,3 +1,16 @@
+@import "modules";
+
+html {
+  background-color: $gallery;
+  height: 100%;
+  width: 100%;
+}
+
+body {
+  height: 100%;
+  body: 100%;
+}
+
 button { 
   background-color: transparent; 
 }

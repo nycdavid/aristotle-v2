@@ -1,5 +1,6 @@
 class SessionsController < ApplicationController
   before_action :find_user, only: [:create]
+  layout "guest"
 
   def new
   end
