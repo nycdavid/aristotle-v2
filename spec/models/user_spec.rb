@@ -2,15 +2,23 @@ require 'rails_helper'
 
 describe User, 'validations' do
   it 'should require an email' do
-    @user = FactoryGirl.build(:user, { email: '' })
-    expect(@user).not_to be_valid
-    expect(@user.errors.messages[:email]).to include('can\'t be blank')
+    user = FactoryGirl.build(:user, { email: '' })
+    expect(user).not_to be_valid
+    expect(user.errors.messages[:email]).to include('can\'t be blank')
   end
 
   it 'should require a timezone' do
-    @user = FactoryGirl.build(:user, { timezone: '' })
-    expect(@user).not_to be_valid
-    expect(@user.errors.messages[:timezone]).to include('can\'t be blank')
+    user = FactoryGirl.build(:user, { timezone: '' })
+    expect(user).not_to be_valid
+    expect(user.errors.messages[:timezone]).to include('can\'t be blank')
+  end
+
+  it "should enforce email uniqueness" do
+    first_user = FactoryGirl.create :user
+    second_user = FactoryGirl.build :user, email: first_user.email
+
+    expect(second_user).not_to be_valid
+    expect(second_user.errors.messages[:email]).to include "has already been taken"
   end
 end
 

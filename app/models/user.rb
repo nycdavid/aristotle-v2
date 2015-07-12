@@ -4,7 +4,10 @@ class User < ActiveRecord::Base
   has_secure_password
   has_many :pursuits
 
-  validates_presence_of :email, :timezone
+  validates :email, presence: true
+  validates :email, uniqueness: true
+  validates :timezone, presence: true
+
 
   def full_name
     "#{first_name} #{last_name}"
