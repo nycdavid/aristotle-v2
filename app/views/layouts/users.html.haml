@@ -1,8 +1,7 @@
 !!!
 %html{ :'ng-app' => 'AristotleApp', :'ng-controller' => 'TitleCtrl' }
   %head
-    %title
-      {{ time }}
+    %title= timer_display
     = stylesheet_link_tag "users/application"
     = stylesheet_link_tag "shared/application"
     = javascript_include_tag 'users/application'
