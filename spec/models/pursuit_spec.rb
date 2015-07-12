@@ -88,10 +88,11 @@ describe Pursuit, "#ranged_pomodori" do
 
   context "when passed today as a param" do
     it "should return only the amount of seconds completed today" do
+      date_in_users_timezone = users_timezone.utc_to_local(Time.now.utc).strftime "%m/%d/%Y"
       Timecop.
-        travel(users_timezone.local_to_utc(Chronic.parse("today 1:00 AM"))) { FactoryGirl.create(:pomodoro, pursuit_id: pursuit.id) }
+        travel(users_timezone.local_to_utc(Chronic.parse("#{date_in_users_timezone} 1:00 AM"))) { FactoryGirl.create(:pomodoro, pursuit_id: pursuit.id) }
       Timecop.
-        travel(users_timezone.local_to_utc(Chronic.parse("today 11:00 PM"))) { FactoryGirl.create(:pomodoro, pursuit_id: pursuit.id) }
+        travel(users_timezone.local_to_utc(Chronic.parse("#{date_in_users_timezone} 11:00 PM"))) { FactoryGirl.create(:pomodoro, pursuit_id: pursuit.id) }
       time = pursuit.ranged_pomodori("today")[:time]
 
       expect(time).to eq(20)
