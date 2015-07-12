@@ -28,7 +28,6 @@ gem 'sass-rails'
 gem "font-awesome-rails"
 gem 'chronic'
 gem 'angular_rails_csrf'
-gem 'newrelic_rpm'
 
 group :production do
   gem 'rails_12factor'
@@ -49,7 +48,6 @@ group :test do
 end
 
 group :test, :development do
-  gem 'protractor-rails', '~> 0.0.13'
   gem "letter_opener"
 end
 
