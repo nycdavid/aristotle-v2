@@ -49,7 +49,6 @@ group :test do
 end
 
 group :test, :development do
-  gem 'teaspoon', '~> 0.8.0'
   gem 'protractor-rails', '~> 0.0.13'
   gem "letter_opener"
 end
