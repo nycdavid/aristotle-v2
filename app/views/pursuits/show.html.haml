@@ -1,10 +1,10 @@
-.module
-  %h2{ rel: "pursuit-show" }= @pursuit.name
-  %div{ rel: "default-pomodoro-length" } Default Pomodoro Length: #{convert_total_seconds_of(@pursuit.default_pomodoro_length)}
-  = link_to 'Edit', edit_user_pursuit_path(@pursuit.id)
-  .info
-    %p.pomodori-count Pomodori Count: #{@pursuit.ranged_pomodori("today")[:count]}
-    #cumulative-time
-      = convert_total_seconds_of(@pursuit.ranged_pomodori("today")[:time])
-    = link_to 'Start Pomodoro', new_user_pursuit_pomodoro_path(@pursuit.id)
-    
+.section-heading
+  %h2.section-heading__text{ rel: "pursuit-show" }= @pursuit.name
+%div{ rel: "default-pomodoro-length" } Default Pomodoro Length: #{convert_total_seconds_of(@pursuit.default_pomodoro_length)}
+= link_to 'Edit', edit_user_pursuit_path(@pursuit.id)
+.info
+  %p.pomodori-count Pomodori Count: #{@pursuit.ranged_pomodori("today")[:count]}
+  #cumulative-time
+    = convert_total_seconds_of(@pursuit.ranged_pomodori("today")[:time])
+  = link_to 'Start Pomodoro', new_user_pursuit_pomodoro_path(@pursuit.id)
+  
