@@ -6,24 +6,29 @@
     = stylesheet_link_tag "shared/application"
     = javascript_include_tag "users/application"
     %link{ href: "http://fonts.googleapis.com/css?family=Open+Sans", rel: "stylesheet", type: "text/css" }
+    %link{ href: "http://fonts.googleapis.com/css?family=Oswald:400,300", rel: "stylesheet", type: "text/css" }
     = csrf_meta_tags
-  %body
+  %body.table-layout
     - flash.each do |name, msg|
       = content_tag :div, content_tag(:span, msg, class: "notification__text"), rel: "#{name}-flash", class: "notification notification--#{name}"
-    %nav.side-nav
-      - if user_signed_in?
-        %ul
-          %li.nav-link.user-avatar
-            = link_to edit_user_path, id: "edit-account" do
-              = image_tag gravatar_image_url, alt: "User's Gravatar", class: "user-avatar__image"
-              %p.user-avatar__name= display_name
-          %li.side-nav__pursuits.nav-link.nav-link--normal{ class: active?("pursuits-index") }
-            = link_to "/user/pursuits?range=today" do
-              %i.fa.fa-clock-o.nav-link__icon
-              %p Pursuits
-          %li.side-nav__logout.nav-link.nav-link--normal
-            = link_to session_path, method: :delete do
-              %i.fa.fa-power-off.nav-link__icon
-              %p Logout
-    %section.main-content
-      = yield
+    %div.table-layout__row.table-row
+      %nav.side-nav.table-row__cell.table-row__cell--left
+        - if user_signed_in?
+          %ul
+            %li.nav-link.user-avatar
+              = link_to edit_user_path, id: "edit-account" do
+                = image_tag gravatar_image_url(size: 60), alt: "User's Gravatar", class: "user-avatar__image"
+                %p.user-avatar__name= display_name
+            %li.side-nav__pursuits.nav-link.nav-link--normal{ class: active?("pursuits-index") }
+              = link_to "/user/pursuits?range=today" do
+                %i.fa.fa-clock-o.nav-link__icon
+                %p Pursuits
+            %li.side-nav__logout.nav-link.nav-link--normal
+              = link_to session_path, method: :delete do
+                %i.fa.fa-power-off.nav-link__icon
+                %p Logout
+      %div.table-row__cell.table-row__cell--right
+        .main-heading
+          %h2.main-heading__text= @section_heading
+        .main-content
+          = yield

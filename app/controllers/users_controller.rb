@@ -7,6 +7,7 @@ class UsersController < ApplicationController
   end
 
   def edit
+    @section_heading = "Edit my Account"
   end
 
   def update
@@ -28,6 +29,7 @@ class UsersController < ApplicationController
   end
 
   def change_password
+    @section_heading = "Change my Password"
   end
 
   private

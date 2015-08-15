@@ -13,7 +13,7 @@ describe UsersHelper, "#gravatar_image_url" do
     allow(Digest::MD5).to receive(:hexdigest).and_return "somehash"
     allow(self).to receive(:current_user).and_return instance_double("User", email: Faker::Internet.email)
 
-    expect(gravatar_image_url).to eq "http://www.gravatar.com/avatar/somehash"
+    expect(gravatar_image_url).to eq "http://www.gravatar.com/avatar/somehash?s=80"
   end
 end
 

@@ -12,7 +12,7 @@ feature 'User can login' do
     click_button 'Login'
 
     expect(page).to have_selector '*[rel="success-flash"]'
-    expect(page).to have_selector '*[rel="account-view"]'
+    expect(page).to have_selector '*[rel="pursuits"]'
   end
 
   scenario 'User logs in and then navigates to root' do

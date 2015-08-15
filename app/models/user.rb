@@ -38,6 +38,10 @@ class User < ActiveRecord::Base
     Digest::SHA2.hexdigest(token.to_s) == reset_digest
   end
 
+  def now
+    TZInfo::Timezone.get(timezone).now
+  end
+
   private
 
   def self.new_token

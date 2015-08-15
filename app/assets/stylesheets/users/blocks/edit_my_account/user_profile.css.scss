@@ -1,0 +1,15 @@
+@import "../../../shared/modules";
+
+.user-profile {
+  padding-bottom: 18px;
+  text-align: center;
+  font-family: $open-sans;
+  color: $dove-gray;
+
+  &__gravatar {
+    display: block;
+    margin: 0 auto;
+    border-radius: 50%;
+    margin-bottom: 18px;
+  }
+}

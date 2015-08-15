@@ -6,10 +6,12 @@ class PursuitsController < ApplicationController
   def index
     @pursuits = current_user.pursuits
     @range = params[:range].nil? ? "overall" : params[:range]
+    @section_heading = "Your Pursuits"
   end
 
   def new
     @pursuit = current_user.pursuits.new
+    @section_heading = "Create a new Pursuit"
   end
 
   def create
@@ -18,6 +20,8 @@ class PursuitsController < ApplicationController
   end
 
   def show
+    @data = PursuitChartData.new(@pursuit).count_backward_from_today(6)
+    @section_heading = @pursuit.name
     respond_to do |format|
       format.html { render :show }
       format.json { render :json => @pursuit.to_json }
@@ -25,6 +29,7 @@ class PursuitsController < ApplicationController
   end
 
   def edit
+    @section_heading = "Edit: #{@pursuit.name}"
   end
 
   def update

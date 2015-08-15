@@ -1,0 +1,13 @@
+{
+  "name": "something",
+  "dependencies": {
+    "browserify": "~> 10.2.4",
+    "browserify-incremental": "^3.0.1",
+    "chart.js": "^1.0.2",
+    "react-chartjs": "^0.6.0"
+  },
+  "license": "MIT",
+  "engines": {
+    "node": ">= 0.10"
+  }
+}

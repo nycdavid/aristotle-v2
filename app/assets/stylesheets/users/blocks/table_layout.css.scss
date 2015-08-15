@@ -1,0 +1,23 @@
+.table-layout {
+  display: table;
+
+  &__row {
+    height: 100%;
+    width: 100%;
+    display: table-row;
+    background-color: #f1f4f9;
+
+  }
+}
+
+.table-row {
+  &__cell {
+    display: table-cell;
+
+    &--right {
+      width: 100%;
+      position: relative;
+      vertical-align: top;
+    }
+  }
+}

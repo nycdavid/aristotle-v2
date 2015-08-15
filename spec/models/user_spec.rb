@@ -70,3 +70,13 @@ describe User, "#full_name" do
     expect(user.full_name).to eq "John Doe"
   end
 end
+
+describe User, "#now" do
+  let(:user) { FactoryGirl.create :user }
+
+  it "should return a time object that is in terms of the User's timezone" do
+    Timecop.freeze do
+      expect(user.now).to eq TZInfo::Timezone.get("America/New_York").now
+    end
+  end
+end

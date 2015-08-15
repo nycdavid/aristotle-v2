@@ -1,13 +1,14 @@
-.login {
-  &__form label {
+.form {
+  &__label {
     font-size: 13px;
+    display: block;
   }
 
-  &__form input {
+  &__input {
     padding: 7px 8px;
+    width: 100%;
     font-size: 13px;
     min-height: 34px;
-    width: 100%;
     border: 1px solid #ccc;
     border-radius: 3px;
     margin-bottom: 15px;

@@ -3,9 +3,9 @@ module UsersHelper
     ActiveSupport::TimeZone::MAPPING.invert[timezone]
   end
 
-  def gravatar_image_url
+  def gravatar_image_url(size: 80)
     hash = Digest::MD5.hexdigest current_user.email.downcase
-    "http://www.gravatar.com/avatar/#{hash}"
+    "http://www.gravatar.com/avatar/#{hash}?s=#{size}"
   end
 
   def display_name

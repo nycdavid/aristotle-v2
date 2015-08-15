@@ -19,8 +19,6 @@ feature 'Guest can sign up' do
     click_button 'Sign Up'
 
     expect(page).to have_selector '*[rel="success-flash"]'
-    expect(page).to have_selector '*[data-email="person@example.com"]'
-    expect(page).to have_selector '*[rel="account-view"]'
   end
 
   scenario 'Guest enters invalid information' do
