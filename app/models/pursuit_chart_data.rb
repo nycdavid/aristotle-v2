@@ -34,7 +34,7 @@ class PursuitChartData
 
   def prepare_data
     @dates.map do |date|
-      @data_report.total_time_on(date) / 60.0 / 60.0
+      (@data_report.total_time_on(date) / 60.0 / 60.0).round(1)
     end
   end
 

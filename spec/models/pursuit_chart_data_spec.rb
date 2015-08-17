@@ -27,6 +27,16 @@ describe PursuitChartData, "#within_range" do
     expect(chart_data[:labels]).to match_array date_range
     expect(chart_data[:datasets].first[:data]).to match_array [1]
   end
+
+  it "should round the float to 1 decimal place" do
+    Timecop.travel(Time.utc(2012, 9, 1, 5)) do
+      FactoryGirl.create :pomodoro, pursuit: pursuit, elapsed_time: 60
+    end
+    date_range = ["09/01/2012"]
+    chart_data = PursuitChartData.new(pursuit).within_range(date_range)
+
+    expect(chart_data[:datasets].first[:data]).to match_array [1.0]
+  end
 end
 
 describe PursuitChartData, "#count_backward_from_today" do
