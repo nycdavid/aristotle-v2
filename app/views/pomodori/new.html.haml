@@ -1,7 +1,1 @@
-.module{ rel: 'pomodori-timer', :'ng-controller' => 'PomodoriCtrl', :'ng-init' => "show(#{@pursuit.id})" }
-  .section-heading
-    %h2.section-heading__text Pursuit: {{ pursuit.name }}
-  %span Time remaining: {{ formattedTimeRemaining }}
-  = link_to 'Pause', '#', { :'ng-click' => 'pause()' }
-  = link_to 'Resume', '#', { :'ng-click' => 'resume()' }
-  = link_to 'Quit', '#', { :'ng-click' => 'quit()' }
+= react_component "Pomodoro", { pursuitId: @pursuit.id, pomodoroLength: @pursuit.default_pomodoro_length }

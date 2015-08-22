@@ -1,7 +1,11 @@
 //= require_self
+//= require jquery
+//= require jquery_ujs
 //= require react_ujs
 
 React = require("react");
 
+
 // Component
-Timer = require("./components/timer");
+Pomodoro = require("./components/pomodoro");
+TimerTitle = require("./components/timer_title");

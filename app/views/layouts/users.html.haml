@@ -1,7 +1,10 @@
 !!!
-%html{ :'ng-app' => 'AristotleApp', :'ng-controller' => 'TitleCtrl' }
+%html
   %head
-    %title= timer_display
+    - if display_timer?
+      = react_component "TimerTitle"
+    - else
+      %title Aristotle
     = stylesheet_link_tag "users/application"
     = stylesheet_link_tag "shared/application"
     = javascript_include_tag "users/application"

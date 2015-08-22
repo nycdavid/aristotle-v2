@@ -1,10 +1,6 @@
 module ApplicationHelper
-  def timer_display
+  def display_timer?
     action_string = "#{controller_name}-#{action_name}"
-    if action_string == "pomodori-new"
-      "{{ time }}"
-    else
-      "Aristotle"
-    end
+    action_string == "pomodori-new"
   end
 end

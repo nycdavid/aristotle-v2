@@ -5,6 +5,7 @@ class PomodoriController < ApplicationController
   before_action :fetch_pomodoro, only: [:show]
 
   def new
+    @section_heading = @pursuit.name
   end
 
   def create
@@ -23,15 +24,16 @@ class PomodoriController < ApplicationController
   end
 
   private
-    def fetch_pomodoro
-      @pomodoro = Pomodoro.find(params[:id])
-    end
 
-    def fetch_pursuit
-      @pursuit = Pursuit.find(params[:pursuit_id])
-    end
+  def fetch_pomodoro
+    @pomodoro = Pomodoro.find(params[:id])
+  end
 
-    def pomodoro_params
-      params.require(:pomodoro).permit(:pursuit_id, :elapsed_time)
-    end
+  def fetch_pursuit
+    @pursuit = Pursuit.find(params[:pursuit_id])
+  end
+
+  def pomodoro_params
+    params.require(:pomodoro).permit(:pursuit_id, :elapsed_time)
+  end
 end

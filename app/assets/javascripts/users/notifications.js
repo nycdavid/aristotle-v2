@@ -16,7 +16,6 @@ $(document).ready(function() {
 
   // - Bring opacity back to 1 and disable fadeouts on mousein
   $('.notification').hover(function() {
-    console.log("mouseenter");
     $(this).css('opacity', 1.0);
 
     clearTimeout(initialFadeout);

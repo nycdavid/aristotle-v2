@@ -12,6 +12,15 @@ Rails.application.routes.draw do
   resources :password_resets, only: [:new, :create, :edit, :index, :update]
 
   # Private routes
+  # React routes
+  namespace :api do
+    resource :user, only: [:show] do
+      resources :pursuits, only: [:show] do
+        resources :pomodori, only: [:create]
+      end
+    end
+  end
+
   resource :user, only: [:update, :edit, :show] do
     get :change_password
     resources :pursuits do

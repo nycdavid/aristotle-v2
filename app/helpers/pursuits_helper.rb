@@ -5,7 +5,7 @@ module PursuitsHelper
   end
 
   def minute_selections
-    %w(5 10 15 20 25 30 45 60 90 120).map do |choice|
+    %w(1 5 10 15 20 25 30 45 60 90 120).map do |choice|
       [choice.to_s.rjust(2, "0"), choice]
     end
   end
