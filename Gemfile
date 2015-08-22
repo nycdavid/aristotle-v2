@@ -26,6 +26,7 @@ gem 'uglifier', '>= 1.3.0'
 gem 'jquery-rails'
 gem "react-rails", "~> 1.1.0"
 gem "chartjs-ror", "~> 2.1.1"
+gem "browserify-rails", "~> 1.4.0"
 
 group :production do
   gem 'rails_12factor'

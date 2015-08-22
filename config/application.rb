@@ -25,5 +25,10 @@ module Aristotle
       generator.template_engine :haml
       generator.test_framework :rspec
     end
+
+    # React configuraiton
+    config.react.variant = :production
+    config.react.addons = true
+    config.browserify_rails.commandline_options = "--transform reactify --extension=\".jsx\""
   end
 end

@@ -3,9 +3,6 @@
 //= require jquery_ujs
 //= require angular
 //= require angular-resource
-//= require react
-//= require react_ujs
-//= require ./components
 //= require Chart
 //= require excanvas
 //= require_tree .
