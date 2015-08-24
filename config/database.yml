@@ -1,0 +1,18 @@
+base: &base
+  adapter: postgresql
+  pool: 5
+  timeout: 5000
+  host: <%= ENV["POSTGRES_PORT_5432_TCP_ADDR"] %>
+  username: postgres
+  password: <%= ENV["POSTGRES_ENV_POSTGRES_PASSWORD"] %>
+
+development:
+  <<: *base
+  database: aristotle_v2_development
+
+test: &test
+  <<: *base
+  database: aristotle_v2_test
+
+cucumber:
+  <<: *test

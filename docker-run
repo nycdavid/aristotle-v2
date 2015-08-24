@@ -1,0 +1,39 @@
+#!/bin/bash
+set -e
+
+server=false
+cmd=
+port=
+bind='-b 0.0.0.0' # bind to an ip
+
+while (( "$#" )) ; do
+	case $1 in
+		server|-s)
+			# server requires mapped ports, other commands do not
+			port='-p 3000:3000'
+			cmd="$cmd $1"
+			server=true
+		;;
+		-p|--port)
+			# map docker port to your desired port, docker only exposes 3000
+			port="-p $2:3000"
+			shift
+		;;
+		-b)
+			bind="-b $2"
+			shift
+		;;
+		*)
+			cmd="$cmd $1"
+		;;
+	esac
+
+	shift
+done
+
+if [ "$server" = true ] ; then
+	cmd="$cmd $bind"
+fi
+
+exec docker run \
+	-v $(pwd):/app $port --link postgres:postgres --rm -it aristotle-v2 $cmd
