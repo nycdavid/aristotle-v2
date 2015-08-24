@@ -1,0 +1,12 @@
+#!/bin/sh
+set -e
+
+case "$1" in
+	rake|rails)
+		exec bundle exec "$@"
+		;;
+	*)
+	;;
+esac
+
+exec "$@"
