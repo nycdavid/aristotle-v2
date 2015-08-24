@@ -36,4 +36,5 @@ if [ "$server" = true ] ; then
 fi
 
 exec docker run \
-	-v $(pwd):/app $port --link postgres:postgres --rm -it aristotle-v2 $cmd
+	-v $(pwd):/home/app/src $port --link postgres:postgres --rm -it \
+	aristotle-v2 $cmd
