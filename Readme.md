@@ -1,5 +1,7 @@
 # aristotle
 
+[![Circle CI](https://circleci.com/gh/nycdavid/aristotle-v2.svg?style=svg)](https://circleci.com/gh/nycdavid/aristotle-v2)
+
 > v2
 
 
