@@ -17,9 +17,11 @@ Build the container.
 Run the container.
 
     docker run \
-        -v $(pwd):/app -p 3000:3000 --link postgres:postgres \
+        -v $(pwd):/home/app/src -p 3000:3000 --link postgres:postgres \
         --rm \
         -it aristotle-v2 rails server
+
+*The `WORKDIR` is `/home/app/src`.*
 
 
 Because the app runs in it's own isolated container it will always run on port
