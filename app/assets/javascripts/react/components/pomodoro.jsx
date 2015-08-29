@@ -25,18 +25,14 @@ var Pomodoro = React.createClass({
   render: function() {
     return (
       <div className="pomodoro" rel="pomodori-timer">
-        <h1>{ this.state.timeRemaining }</h1>
-        <button onClick={ this._toggleTimer }>{ this._statusButton() }</button>
-        <button onClick={ this._stopTimer }>Stop</button>
-        <button onClick={ this._cancelTimer }>Cancel</button>
+        <h1 className="pomodoro__timer-display">{ this.state.timeRemaining }</h1>
+        <button className="pomodoro__toggle-status btn btn-lg btn-clear branding-controls__control" onClick={ this._toggleTimer }>{ this._statusButton() }</button>
+        <button className="pomodoro__stop btn btn-lg btn-clear branding-controls__control" onClick={ this._stopTimer }><i className="fa fa-stop"></i></button>
       </div>
     )
   },
   _stopTimer: function() {
     this._pomodoroCompleted(); 
-  },
-  _cancelTimer: function() {
-    window.location.assign("/user/pursuits/1");
   },
   _toggleTimer: function() {
     if (this.state.running) {
@@ -48,9 +44,9 @@ var Pomodoro = React.createClass({
   },
   _statusButton: function() {
     if (this.state.running) {
-      return "Pause";
+      return <i className="fa fa-pause"></i>;
     } else {
-      return "Resume";
+      return <i className="fa fa-play"></i>
     }
   },
   _startTimer: function() {

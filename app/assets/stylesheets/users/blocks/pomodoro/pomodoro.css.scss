@@ -1,0 +1,19 @@
+@import "../../../shared/modules";
+
+.pomodoro {
+  font-family: $open-sans;
+  text-align: center;
+
+  &__timer-display {
+    font-size: 64px;
+  }
+
+  &__toggle-status {
+    font-size: 24px;
+    margin-right: 8px;
+  }
+
+  &__stop {
+    font-size: 24px;
+  }
+}
