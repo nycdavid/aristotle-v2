@@ -11,12 +11,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150711185410) do
+ActiveRecord::Schema.define(version: 20150912150438) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "pomodori", force: true do |t|
+  create_table "invitations", force: :cascade do |t|
+    t.string   "code"
+    t.integer  "user_id"
+    t.boolean  "used",       default: false
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
+  end
+
+  create_table "pomodori", force: :cascade do |t|
     t.integer  "pursuit_id"
     t.integer  "elapsed_time"
     t.datetime "created_at"
@@ -25,24 +33,24 @@ ActiveRecord::Schema.define(version: 20150711185410) do
     t.datetime "end_time"
   end
 
-  create_table "pursuits", force: true do |t|
-    t.string   "name"
+  create_table "pursuits", force: :cascade do |t|
+    t.string   "name",                    limit: 255
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "user_id"
-    t.integer  "default_pomodoro_length", default: 0
+    t.integer  "default_pomodoro_length",             default: 0
   end
 
-  create_table "users", force: true do |t|
-    t.string   "email"
-    t.string   "password_digest"
+  create_table "users", force: :cascade do |t|
+    t.string   "email",           limit: 255
+    t.string   "password_digest", limit: 255
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "timezone"
-    t.string   "reset_digest"
+    t.string   "timezone",        limit: 255
+    t.string   "reset_digest",    limit: 255
     t.datetime "reset_sent_at"
-    t.string   "first_name"
-    t.string   "last_name"
+    t.string   "first_name",      limit: 255
+    t.string   "last_name",       limit: 255
   end
 
 end

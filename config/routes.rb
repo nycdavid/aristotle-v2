@@ -5,7 +5,7 @@ Rails.application.routes.draw do
 
   # Public routes
   get '/login', to: 'sessions#new', as: 'login'
-  # get '/signup', to: 'users#new', as: 'sign_up'
+  get '/signup', to: 'users#new', as: 'sign_up'
   match '/404', to: 'errors#not_found', via: :all
   resource :session, only: [:create, :destroy]
   resources :users, only: [:create]

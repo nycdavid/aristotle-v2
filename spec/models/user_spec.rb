@@ -22,6 +22,22 @@ describe User, 'validations' do
   end
 end
 
+describe User, "#after_save" do
+  let(:user) { FactoryGirl.build :user }
+  let(:invitation) { FactoryGirl.create :invitation }
+
+  context "when a user uses a invitation code" do
+    it "should invalidate the invitation" do
+      allow(user).to receive(:invitation_code).and_return invitation.code 
+      user.save
+      invitation.reload
+
+      expect(invitation.used).to eq true
+      expect(invitation.user_id).to eq user.id
+    end
+  end
+end
+
 describe User, "#todays_productivity" do
   let (:user) { FactoryGirl.create :user }
   let (:pursuit) { FactoryGirl.create :pursuit, user_id: user.id }

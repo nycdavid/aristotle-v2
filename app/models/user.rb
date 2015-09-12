@@ -1,5 +1,5 @@
 class User < ActiveRecord::Base
-  attr_accessor :reset_token
+  attr_accessor :reset_token, :invitation_code
 
   has_secure_password
   has_many :pursuits
@@ -8,6 +8,7 @@ class User < ActiveRecord::Base
   validates :email, uniqueness: true
   validates :timezone, presence: true
 
+  after_save :invalidate_invitation
 
   def full_name
     "#{first_name} #{last_name}"
@@ -43,6 +44,12 @@ class User < ActiveRecord::Base
   end
 
   private
+
+  def invalidate_invitation
+    return if self.invitation_code.nil?
+    invitation = Invitation.find_by_code self.invitation_code
+    invitation.update_attributes user_id: self.id, used: true
+  end
 
   def self.new_token
     SecureRandom.urlsafe_base64

@@ -15,12 +15,19 @@
     width: 280px;
     margin: -124px 0 0 -140px;
   }
+
+  &--signup {
+    width: 400px;
+    margin: -302px 0 0 -200px;
+  }
 }
 
 
 // --== Elements ==-- //
 .branding {
   &__logo {
+    display: block;
+    margin: 0 auto;
     width: 450px;
 
     &--login {

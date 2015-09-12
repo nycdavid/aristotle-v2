@@ -1,22 +1,27 @@
-.module{ rel: 'signup' }
-  = form_for @user do |f|
-    .form-group
-      = f.label :email, 'Email'
-      = f.text_field :email, placeholder: 'someone@somewhere.com'
-    .form-group
-      = f.label :first_name, 'First Name'
-      = f.text_field :first_name, placeholder: 'John'
-    .form-group
-      = f.label :last_name, 'Last Name'
-      = f.text_field :last_name, placeholder: 'Doe'
-    .form-group
-      = f.label :password, 'Password'
-      = f.password_field :password, placeholder: 'Don\'t make it "password"...'
-    .form-group
-      = f.label :password_confirmation, 'Password Confirmation'
-      = f.password_field :password_confirmation, placeholder: 'Seriously, not a good idea...'
-    .form-group
-      = f.label :timezone, 'Timezone'
-      = f.select :timezone, ActiveSupport::TimeZone::MAPPING, class: 'timezones'
-    .form-group
-      = f.submit 'Sign Up'
+.login.branding.branding--signup
+  = image_tag "landing/logo.png", alt: "Aristotle", class: "branding__logo branding__logo--login"
+  .form{ rel: "signup" }
+    = form_for @user do |f|
+      %div
+        = f.label :email, 'Email', class: "form__label"
+        = f.text_field :email, placeholder: 'someone@somewhere.com', class: "form__input form__input--login"
+      %div
+        = f.label :first_name, 'First Name', class: "form__label"
+        = f.text_field :first_name, placeholder: 'John', class: "form__input form__input--login"
+      %div
+        = f.label :last_name, 'Last Name', class: "form__label"
+        = f.text_field :last_name, placeholder: 'Doe', class: "form__input form__input--login"
+      %div
+        = f.label :password, 'Password', class: "form__label"
+        = f.password_field :password, placeholder: 'Don\'t make it "password"...', class: "form__input form__input--login"
+      %div
+        = f.label :password_confirmation, 'Password Confirmation', class: "form__label"
+        = f.password_field :password_confirmation, placeholder: 'Seriously, not a good idea...', class: "form__input form__input--login"
+      %div
+        = f.label :timezone, 'Timezone', class: "form__label"
+        = f.select :timezone, ActiveSupport::TimeZone::MAPPING, class: 'timezones', class: "form__input form__input--login"
+      %div
+        = label_tag "Invitation Code", nil, class: "form__label"
+        = text_field_tag "user[invitation_code]", nil, placeholder: "Invitation Code", class: "form__input form__input--login"
+      %div
+        = f.submit 'Sign Up', class: "btn btn-lg btn-clear branding-controls__control branding-controls__control--login"

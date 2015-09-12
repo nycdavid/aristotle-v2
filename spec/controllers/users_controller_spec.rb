@@ -2,6 +2,7 @@ require 'rails_helper'
 
 describe UsersController, 'authentication' do
   let(:user) { FactoryGirl.create :user }
+  let(:invitation) { FactoryGirl.create :invitation }
 
   context 'when User is signed in' do
     before :each do
@@ -12,13 +13,6 @@ describe UsersController, 'authentication' do
       it 'should respond with 200' do
         get :new
         expect(response.status).to eq(200)
-      end
-    end
-
-    describe '#create' do
-      it 'should respond with 302' do
-        post :create, { user: { email: 'joe@person.com', password: 'strongpass', password_confirmation: 'strongpass', timezone: 'America/New_York' } }
-        expect(response.status).to eq(302)
       end
     end
 
@@ -53,8 +47,8 @@ describe UsersController, 'authentication' do
     end
 
     describe '#create' do
-      it 'should respond with 200' do
-        post :create, { user: { email: 'joe@person.com', password: 'strongpass', password_confirmation: 'strongpass', timezone: 'America/New_York' } }
+      it 'should respond with 302' do
+        post :create, { user: { email: 'joe@person.com', password: 'strongpass', password_confirmation: 'strongpass', timezone: 'America/New_York', invitation_code: invitation.code } }
         expect(response.status).to eq(302)
       end
     end
