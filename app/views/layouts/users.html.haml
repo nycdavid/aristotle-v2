@@ -27,6 +27,11 @@
               = link_to "/user/pursuits?range=today" do
                 %i.fa.fa-clock-o.nav-link__icon
                 %p Pursuits
+            - if current_user.admin?
+              %li.side-nav__admins.nav-link.nav-link--normal
+                = link_to admin_path do
+                  %i.fa.fa-lock.nav-link__icon
+                  %p Admins
             %li.side-nav__logout.nav-link.nav-link--normal
               = link_to session_path, method: :delete do
                 %i.fa.fa-power-off.nav-link__icon

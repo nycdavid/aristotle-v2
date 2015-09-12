@@ -28,6 +28,7 @@ gem "react-rails", "~> 1.1.0"
 gem "chartjs-ror", "~> 2.1.1"
 gem "browserify-rails", "~> 1.4.0"
 gem "responders", "~> 2.1.0"
+gem "cancancan", "~> 1.10"
 
 group :production do
   gem 'rails_12factor'

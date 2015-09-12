@@ -6,5 +6,11 @@ FactoryGirl.define do
     password 'astrongpassword'
     password_confirmation 'astrongpassword'
     timezone 'America/New_York'
+
+    trait :admin do
+      admin true
+    end
+
+    factory :admin, traits: [:admin]
   end
 end

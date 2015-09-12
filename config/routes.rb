@@ -21,6 +21,10 @@ Rails.application.routes.draw do
     end
   end
 
+  resource :admin, only: [:show] do
+    resources :users, except: [:new, :create], controller: "admin/users"
+  end
+
   resource :user, only: [:update, :edit, :show] do
     get :change_password
     resources :pursuits do

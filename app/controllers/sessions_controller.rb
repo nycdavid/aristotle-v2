@@ -6,7 +6,7 @@ class SessionsController < ApplicationController
   end
 
   def create
-    user_has_valid_credentials? ? sign_user_in : refuse_login
+    user_has_valid_credentials ? sign_user_in : refuse_login
   end
 
   def destroy
@@ -16,18 +16,19 @@ class SessionsController < ApplicationController
   end
   
   private
-    def find_user
-      @user = User.find_by_email(params[:user][:email])
 
-      refuse_login if @user.nil?
-    end
+  def find_user
+    @user = User.find_by_email(params[:user][:email])
 
-    def user_has_valid_credentials?
-      @user.authenticate(params[:user][:password]) 
-    end
+    refuse_login if @user.nil?
+  end
 
-    def refuse_login
-      flash[:danger] = 'Invalid email/password.'
-      redirect_to login_path
-    end
+  def user_has_valid_credentials
+    @user.authenticate(params[:user][:password]) 
+  end
+
+  def refuse_login
+    flash[:danger] = 'Invalid email/password.'
+    redirect_to login_path
+  end
 end

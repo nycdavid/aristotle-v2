@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150912150438) do
+ActiveRecord::Schema.define(version: 20150912222327) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -51,6 +51,8 @@ ActiveRecord::Schema.define(version: 20150912150438) do
     t.datetime "reset_sent_at"
     t.string   "first_name",      limit: 255
     t.string   "last_name",       limit: 255
+    t.boolean  "admin",                       default: false
+    t.datetime "last_login"
   end
 
 end
