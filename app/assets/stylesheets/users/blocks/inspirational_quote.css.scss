@@ -1,0 +1,13 @@
+.inspirational-quote {
+  text-align: center;
+
+  &__body {
+    font-size: 30px;
+  }
+
+  &__author {
+    font-size: 17px;
+    font-style: italic;
+    display: block;
+  }
+}

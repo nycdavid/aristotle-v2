@@ -24,3 +24,7 @@
         %td.summary__time{ rel: "pomodori-time" }= convert_total_seconds_of(current_user.todays_productivity[:time])
         %td
   = link_to 'New Pursuit', new_user_pursuit_path, class: "btn btn-lg btn-clear branding-controls__control branding-controls__control--large"
+.content-panel.content-panel--last
+  .inspirational-quote
+    %blockquote.inspirational-quote__body= @inspirational_quote["body"]
+    %span.inspirational-quote__author -#{@inspirational_quote["author"]}

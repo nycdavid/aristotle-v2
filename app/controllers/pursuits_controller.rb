@@ -6,6 +6,7 @@ class PursuitsController < ApplicationController
   def index
     @pursuits = current_user.pursuits
     @range = params[:range].nil? ? "overall" : params[:range]
+    @inspirational_quote = InspirationalQuote.random
     @section_heading = "Your Pursuits"
   end
 
