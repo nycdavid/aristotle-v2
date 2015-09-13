@@ -1,0 +1,8 @@
+@import "../../shared/modules";
+
+.table {
+  color: $dove-gray;
+  &__head {
+    font-weight: bold;
+  }
+}

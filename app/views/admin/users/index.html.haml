@@ -1,13 +1,14 @@
-%table.table{ rel: "users-index" }
-  %thead
-    %th ID
-    %th Email
-    %th Name
-    %th Last Login
-  %tbody
-    - @users.each do |user|
-      %tr
-        %td= user.id
-        %td= user.email
-        %td= user.full_name
-        %td= last_login_info user
+.content-panel.content-panel--last
+  %table.table{ rel: "users-index" }
+    %thead
+      %th ID
+      %th Email
+      %th Name
+      %th Last Login
+    %tbody
+      - @users.each do |user|
+        %tr
+          %td= user.id
+          %td= user.email
+          %td= user.full_name
+          %td= last_login_info user

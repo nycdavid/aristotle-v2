@@ -1,11 +1,11 @@
-%div{ rel: "pursuits" }
-  = link_to 'New Pursuit', new_user_pursuit_path
-  %div{ rel: "pursuits-context" }
+.content-panel.content-panel--last{ rel: "pursuits" }
+  .pursuits-context{ rel: "pursuits-context" }
     = context_link "today"
     |
     = context_link "overall"
+  %hr
   %table.table.pursuits-table
-    %thead
+    %thead.table__head
       %tr 
         %th Name
         %th #{@range.capitalize} Pomodori / Time
@@ -23,3 +23,4 @@
         %td
         %td.summary__time{ rel: "pomodori-time" }= convert_total_seconds_of(current_user.todays_productivity[:time])
         %td
+  = link_to 'New Pursuit', new_user_pursuit_path, class: "btn btn-lg btn-clear branding-controls__control branding-controls__control--large"
