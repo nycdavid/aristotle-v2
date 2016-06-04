@@ -13,11 +13,14 @@ Rails.application.routes.draw do
 
   # Private routes
   # React routes
-  namespace :api do
+  namespace :api, constraints: { format: "json" } do
     resource :user, only: [:show] do
       resources :pursuits, only: [:show] do
         resources :pomodori, only: [:create]
       end
+    end
+    namespace :v1 do
+      resource :authentications, only: [:create]
     end
   end
 
