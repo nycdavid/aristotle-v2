@@ -1,0 +1,13 @@
+version: '2'
+services:
+  aristotle-web:
+    image: davidko/aristotle:1.0.0
+    command: bash -c "ln -s /usr/bin/nodejs /usr/bin/node && bundle exec rake db:create && bundle exec rake db:migrate && bundle exec rspec spec/"
+    volumes:
+      - ./config/database.docker.dev.yml:/usr/src/app/config/database.yml
+    depends_on:
+      - docker-db
+    links:
+      - docker-db
+  docker-db:
+    image: davidko/aristotle-db:1.0.0

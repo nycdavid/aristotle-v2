@@ -1,8 +1,8 @@
 locals: &locals
   adapter: postgresql
-  host: localhost
-  username: username
-  password: password
+  host: aristotle-test-db
+  username: postgres
+  password:
   pool: 5
   timeout: 5000
 
