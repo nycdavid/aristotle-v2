@@ -13,7 +13,7 @@ migrate:
 	sudo docker run \
 	--link aristotle-test-db \
 	davidko/aristotle:1.0.0 \
-	bash -c "bundle exec rake db:create && bundle exec rake db:migrate"
+	bash -c "mv config/database.sample.yml config/database.yml && bundle exec rake db:create && bundle exec rake db:migrate"
 
 tests:
 	sudo docker run \

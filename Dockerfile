@@ -10,6 +10,7 @@ RUN mkdir -p /usr/src/app
 WORKDIR /usr/src/app
 
 COPY . /usr/src/app
+RUN mv config/database.sample.yml config/database.yml
 
 RUN gem install bundler
 RUN bundle install
