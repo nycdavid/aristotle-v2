@@ -27,5 +27,6 @@ shell:
 	--rm \
 	-it \
 	--link aristotle-test-db \
+	-v $(shell pwd):/usr/src/app/ \
 	davidko/aristotle:1.0.0 \
 	bash
