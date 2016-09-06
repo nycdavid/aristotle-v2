@@ -9,7 +9,7 @@ RUN ln -s /usr/bin/nodejs /usr/bin/node
 RUN mkdir -p /usr/src/app
 WORKDIR /usr/src/app
 
-COPY . /usr/src/app
+COPY ./Gemfile /usr/src/app/Gemfile
 RUN mv config/database.sample.yml config/database.yml
 
 RUN gem install bundler
