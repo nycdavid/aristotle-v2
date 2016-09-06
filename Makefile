@@ -6,13 +6,11 @@ build:
 prep-db:
 	sudo docker run \
 	-d \
-	--privileged \
 	--name aristotle-test-db \
 	postgres:9.5.4
 
 migrate:
 	sudo docker run \
-	--privileged \
 	-v $(shell pwd)/config/database.docker.dev.yml:/usr/src/app/config/database.yml \
 	--link aristotle-test-db \
 	davidko/aristotle:1.0.0 \
@@ -20,7 +18,6 @@ migrate:
 
 tests:
 	sudo docker run \
-	--privileged \
 	-v $(shell pwd)/config/database.docker.dev.yml:/usr/src/app/config/database.yml \
 	--link aristotle-test-db \
 	davidko/aristotle:1.0.0 \
