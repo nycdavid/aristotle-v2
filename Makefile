@@ -21,7 +21,7 @@ tests:
 	-v $(shell pwd)/config/database.docker.dev.yml:/usr/src/app/config/database.yml \
 	--link aristotle-test-db \
 	davidko/aristotle:1.0.0 \
-	bash -c "ln -s /usr/bin/nodejs /usr/bin/node && bundle exec rspec spec/"
+	bash -c "bundle exec rspec spec/"
 
 shell:
 	sudo docker run \
