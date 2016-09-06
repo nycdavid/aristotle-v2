@@ -12,7 +12,7 @@ prep-db:
 migrate:
 	sudo docker run \
 	--link aristotle-test-db \
-	-v $(shell pwd):/usr/src/app/
+	-v $(shell pwd):/usr/src/app/ \
 	davidko/aristotle:1.0.0 \
 	bash -c "bundle exec rake db:create && bundle exec rake db:migrate"
 
