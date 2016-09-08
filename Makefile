@@ -1,28 +1,28 @@
 build:
-	sudo docker build \
+	DOCKER_API_VERSION=1.23 docker build \
 	-t davidko/aristotle:1.0.0 \
 	.
 
 prep-db:
-	sudo docker run \
+	DOCKER_API_VERSION=1.23 docker run \
 	-d \
 	--name aristotle-test-db \
 	postgres:9.5.4
 
 migrate:
-	sudo docker run \
+	DOCKER_API_VERSION=1.23 docker run \
 	--link aristotle-test-db \
 	davidko/aristotle:1.0.0 \
 	bash -c "bundle exec rake db:create && bundle exec rake db:migrate"
 
 tests:
-	sudo docker run \
+	DOCKER_API_VERSION=1.23 docker run \
 	--link aristotle-test-db \
 	davidko/aristotle:1.0.0 \
 	bash -c "bundle exec rspec spec/"
 
 shell:
-	sudo docker run \
+	docker run \
 	--rm \
 	-it \
 	--link aristotle-test-db \
