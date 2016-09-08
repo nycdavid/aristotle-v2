@@ -12,12 +12,14 @@ prep-db:
 migrate:
 	DOCKER_API_VERSION=1.23 docker run \
 	--link aristotle-test-db \
+	-u root \
 	davidko/aristotle:1.0.0 \
 	bash -c "bundle exec rake db:create && bundle exec rake db:migrate"
 
 tests:
 	DOCKER_API_VERSION=1.23 docker run \
 	--link aristotle-test-db \
+	-u root \
 	davidko/aristotle:1.0.0 \
 	bash -c "bundle exec rspec spec/"
 
