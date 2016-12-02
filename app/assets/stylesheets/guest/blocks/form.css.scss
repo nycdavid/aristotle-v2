@@ -1,4 +1,6 @@
 .form {
+  width: 100%;
+
   &__label {
     font-size: 13px;
     display: block;
@@ -6,11 +8,20 @@
 
   &__input {
     padding: 7px 8px;
-    width: 100%;
     font-size: 13px;
     min-height: 34px;
     border: 1px solid #ccc;
     border-radius: 3px;
     margin-bottom: 15px;
+  }
+}
+
+.form-ctrl input {
+  @media(max-width: 768px) {
+    width: 60%;
+  }
+
+  @media(min-width: 768px) {
+    width: 20%;
   }
 }
