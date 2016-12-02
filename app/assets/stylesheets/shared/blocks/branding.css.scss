@@ -2,15 +2,6 @@
 
 // --== Block Modifiers ==-- //
 .branding {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-
-  &--landing {
-    width: 460px;
-    margin: -133px 0 0 -230px;
-  }
-
   &--login {
     width: 280px;
     margin: -124px 0 0 -140px;
@@ -25,10 +16,19 @@
 
 // --== Elements ==-- //
 .branding {
+  width: 100%;
+  text-align: center;
+
   &__logo {
     display: block;
     margin: 0 auto;
-    width: 450px;
+
+    @media (max-width: 768px) {
+      width: 60%;
+    }
+    @media (min-width: 768px) {
+      width: 30%;
+    }
 
     &--login {
       width: 250px;

@@ -3,7 +3,8 @@ FROM davidko/ruby-node:1.0.0
 RUN mkdir -p /usr/src/app
 WORKDIR /usr/src/app
 
-COPY . /usr/src/app
+COPY ./Gemfile /usr/src/app/Gemfile
+COPY ./package.json /usr/src/app/package.json
 RUN gem install bundler
 RUN apt-get -y install npm
 RUN npm install

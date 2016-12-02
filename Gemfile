@@ -33,7 +33,7 @@ gem "cancancan", "~> 1.10"
 
 group :production do
   gem 'rails_12factor'
-  gem "puma", "~> 2.11.3"
+  gem "puma", "~> 2.16.0"
 end
 
 group :test do
