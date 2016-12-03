@@ -1,10 +1,23 @@
-FROM davidko/ruby-node:1.0.0
+FROM ruby:2.2.4-alpine
 
-RUN mkdir -p /usr/src/app
-WORKDIR /usr/src/app
+RUN apk update && apk add \
+  git g++ make libxml2-dev libxslt-dev qt-dev nodejs tzdata postgresql-dev libpq
 
-COPY . /usr/src/app
-RUN gem install bundler
-RUN apt-get -y install npm
-RUN npm install
-RUN bundle install
+ADD Gemfile* tmp/
+WORKDIR /tmp
+RUN gem install bundler && \
+  bundle config build.nokogiri \
+  --use-system-libraries && \
+  bundle install
+
+RUN apk remove \
+  postgresql
+
+RUN mkdir -p /app
+WORKDIR /app
+
+ADD . ./
+
+EXPOSE 3000
+
+CMD ["foreman", "start"]
