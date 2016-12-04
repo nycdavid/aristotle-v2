@@ -1,13 +1,16 @@
-version: '2'
+version: "2"
 services:
-  aristotle-web:
-    image: davidko/aristotle:1.0.0
-    command: bash -c "ln -s /usr/bin/nodejs /usr/bin/node && bundle exec rake db:create && bundle exec rake db:migrate && bundle exec rspec spec/"
-    volumes:
-      - ./config/database.docker.dev.yml:/usr/src/app/config/database.yml
+  web:
+    extends:
+      file: compose.common.yml
+      service: web
+    environment:
+      - RAILS_ENV=development
     depends_on:
-      - docker-db
-    links:
-      - docker-db
-  docker-db:
-    image: davidko/aristotle-db:1.0.0
+      - db
+    ports:
+      - "5000:5000"
+    volumes:
+      - .:/app
+  db:
+    image: postgres:9.6.1-alp-tz

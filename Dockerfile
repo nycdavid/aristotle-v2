@@ -8,10 +8,10 @@ WORKDIR /tmp
 RUN gem install bundler && \
   bundle config build.nokogiri \
   --use-system-libraries && \
-  bundle install
+  bundle install &&
 
-RUN apk remove \
-  postgresql
+ADD package.json tmp/
+RUN npm install
 
 RUN mkdir -p /app
 WORKDIR /app

@@ -34,24 +34,24 @@ ActiveRecord::Schema.define(version: 20150912222327) do
   end
 
   create_table "pursuits", force: :cascade do |t|
-    t.string   "name",                    limit: 255
+    t.string   "name"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "user_id"
-    t.integer  "default_pomodoro_length",             default: 0
+    t.integer  "default_pomodoro_length", default: 0
   end
 
   create_table "users", force: :cascade do |t|
-    t.string   "email",           limit: 255
-    t.string   "password_digest", limit: 255
+    t.string   "email"
+    t.string   "password_digest"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "timezone",        limit: 255
-    t.string   "reset_digest",    limit: 255
+    t.string   "timezone"
+    t.string   "reset_digest"
     t.datetime "reset_sent_at"
-    t.string   "first_name",      limit: 255
-    t.string   "last_name",       limit: 255
-    t.boolean  "admin",                       default: false
+    t.string   "first_name"
+    t.string   "last_name"
+    t.boolean  "admin",           default: false
     t.datetime "last_login"
   end
 
