@@ -1,6 +1,3 @@
-.content-panel.col-md-5
-  %h4 Time (in hours)
-  = bar_chart @data, { scaleFontFamily: "'Open Sans', sans-serif", width: 480 }
 .content-panel.col-md-4
   %div{ rel: "default-pomodoro-length" } Default Pomodoro Length: #{convert_total_seconds_of(@pursuit.default_pomodoro_length)}
   = link_to 'Edit', edit_user_pursuit_path(@pursuit.id)

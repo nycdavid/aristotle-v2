@@ -5,7 +5,7 @@ class PursuitsController < ApplicationController
 
   def index
     @pursuits = current_user.pursuits
-    @range = params[:range].nil? ? "overall" : params[:range]
+    @range = params[:range].nil? ? "today" : params[:range]
     @inspirational_quote = InspirationalQuote.random
     @section_heading = "Your Pursuits"
   end
@@ -17,7 +17,7 @@ class PursuitsController < ApplicationController
 
   def create
     @pursuit = current_user.pursuits.new(pursuit_params)
-    @pursuit.save ? allow_pursuit : refuse_pursuit 
+    @pursuit.save ? allow_pursuit : refuse_pursuit
   end
 
   def show
@@ -57,7 +57,7 @@ class PursuitsController < ApplicationController
       flash[:danger] = "We're sorry, something went wrong..."
       render :new
     end
-  
+
     def pursuit_params
       params.require(:pursuit).permit(:name, :pomodoro_length_in_minutes, :pomodoro_length_in_seconds)
     end

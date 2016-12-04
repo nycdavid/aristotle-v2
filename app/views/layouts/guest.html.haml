@@ -5,7 +5,7 @@
     = stylesheet_link_tag "shared/application", media: 'all'
     = stylesheet_link_tag "guest/application", media: 'all'
     %link{ href: "http://fonts.googleapis.com/css?family=Oswald:400,300", rel: "stylesheet", type: "text/css" }
-    %meta{ name: "viewport", content: "width=device-width" }
+    %meta{ name: "viewport", content: "width=device-width", "initial-scale": 1, "maximum-scale": 1, "user-scalable": "no" }
     = csrf_meta_tags
   %body
     - flash.each do |name, msg|

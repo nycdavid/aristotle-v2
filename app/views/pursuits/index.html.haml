@@ -6,15 +6,15 @@
   %hr
   %table.table.pursuits-table
     %thead.table__head
-      %tr 
+      %tr
         %th Name
-        %th #{@range.capitalize} Pomodori / Time
+        %th Time #{@range.downcase}
         %th
     %tbody
       - @pursuits.each do |pursuit|
         %tr.pursuit{ :'data-pursuit-id' => pursuit.id, :'data-pursuit-name' => pursuit.name }
           %td= link_to pursuit.name, user_pursuit_path(pursuit.id)
-          %td.time-and-count #{pursuit.ranged_pomodori(@range)[:count]} / #{convert_total_seconds_of(pursuit.ranged_pomodori(@range)[:time])}
+          %td.time-and-count #{convert_total_seconds_of(pursuit.ranged_pomodori(@range)[:time])}
           %td.actions
             = link_to "Start", new_user_pursuit_pomodoro_path(pursuit.id), class: "btn btn-xs btn-clear branding-controls__control branding-controls__control--small"
 
@@ -23,7 +23,7 @@
         %td
         %td.summary__time{ rel: "pomodori-time" }= convert_total_seconds_of(current_user.todays_productivity[:time])
         %td
-  = link_to 'New Pursuit', new_user_pursuit_path, class: "btn btn-lg btn-clear branding-controls__control branding-controls__control--large"
+  = link_to "Add", new_user_pursuit_path, class: "btn btn-lg btn-clear branding-controls__control branding-controls__control--large"
 .content-panel.content-panel--last
   .inspirational-quote
     %blockquote.inspirational-quote__body= @inspirational_quote["body"]
