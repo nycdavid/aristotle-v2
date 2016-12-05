@@ -1,5 +1,7 @@
 .content-panel.calendar
-  %ul.calendar-days
+  %h3.panel-name Contributions
+  %h4.month-name= DateTime.now.strftime "%B"
+  %ul.calendar-row.day-names
     %li Sun
     %li Mon
     %li Tues
@@ -7,3 +9,19 @@
     %li Thurs
     %li Fri
     %li Sat
+  %ul.calendar-row
+    %li.date.first 1
+    %li.contributed.date 2
+    %li.date 3
+    %li.date 4
+    %li.date 5
+    %li.date 6
+    %li.date 7
+  %ul.calendar-row
+    %li.date.first 8
+    %li.date 9
+    %li.date 10
+    %li.date 11
+    %li.date 12
+    %li.date 13
+    %li.date 14
