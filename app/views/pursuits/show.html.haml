@@ -1,6 +1,7 @@
 .content-panel.calendar
   %h3.panel-name Contributions
   %h4.month-name= DateTime.now.strftime "%B"
+  != Calendar.new("foo").haml.render
   %ul.calendar-row.day-names
     %li Sun
     %li Mon

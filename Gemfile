@@ -52,6 +52,7 @@ end
 
 group :test, :development do
   gem "letter_opener"
+  gem "pry"
 end
 
 # Use ActiveModel has_secure_password
