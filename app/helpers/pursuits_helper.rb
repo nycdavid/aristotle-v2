@@ -32,6 +32,10 @@ module PursuitsHelper
     end
   end
 
+  def todays_calendar
+    @now = DateTime.now
+  end
+
   private
 
   def hours

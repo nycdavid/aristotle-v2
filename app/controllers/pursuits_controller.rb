@@ -21,7 +21,6 @@ class PursuitsController < ApplicationController
   end
 
   def show
-    @data = PursuitChartData.new(@pursuit).count_backward_from_today(6)
     @section_heading = @pursuit.name
     respond_to do |format|
       format.html { render :show }
