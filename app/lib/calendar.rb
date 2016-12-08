@@ -12,6 +12,15 @@ class Calendar
   end
 
   def dates # array
+    return_value = []
+    first_day = @date.beginning_of_month
+    number_of_days_to_left_pad = Date::DAYNAMES.index first_day.strftime("%A")
+    number_of_days_to_left_pad.times do |n|
+      x = n + 1
+      new_date = first_day - x.days
+      return_value.unshift new_date.strftime("%e")
+    end
+    binding.pry
     # figure out what day the first of the month is on
     # pad the left side of day 1 with the last days of the preceding month
     # create 7 day weeks until the week that contains the last day of the current month
