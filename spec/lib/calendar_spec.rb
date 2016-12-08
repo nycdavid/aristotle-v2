@@ -9,7 +9,7 @@ describe Calendar do
       [11, 12, 13, 14, 15, 16, 17],
       [18, 19, 20, 21, 22, 23, 24],
       [25, 26, 27, 28, 29, 30, 31]
-    ]
+    ].map { |ar| ar.map { |i| i.to_s } }
   end
 
   it "creates an array of arrays to represent dates" do

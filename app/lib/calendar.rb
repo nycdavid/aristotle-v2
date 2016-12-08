@@ -1,33 +1,43 @@
 class Calendar
   def initialize(date)
     @date = date
-  end
-
-  def preceding_month
-    @date.last_month
-  end
-
-  def next_month
-    @date.next_month
+    @month = date.all_month
   end
 
   def dates # array
-    return_value = []
-    first_day = @date.beginning_of_month
-    number_of_days_to_left_pad = Date::DAYNAMES.index first_day.strftime("%A")
-    number_of_days_to_left_pad.times do |n|
-      x = n + 1
-      new_date = first_day - x.days
-      return_value.unshift new_date.strftime("%e")
-    end
-    binding.pry
-    # figure out what day the first of the month is on
-    # pad the left side of day 1 with the last days of the preceding month
-    # create 7 day weeks until the week that contains the last day of the current month
-    # pad the right side of the last day of the month until we get to Saturday
+    return_value = @month.map { |d| d.strftime "%-d" }
+    return_value = add_left_pad return_value
+    return_value = add_right_pad return_value
+    return_value.in_groups_of 7
   end
 
   def haml
     # Haml::Engine.new "%h1 Etcetera"
+  end
+
+  private
+
+  def left_pad_number
+    Date::DAYNAMES.index @month.first.strftime("%A")
+  end
+
+  def right_pad_number
+    6 - (Date::DAYNAMES.index @month.last.strftime("%A"))
+  end
+
+  def add_left_pad(calendar_dates)
+    left_pad_number.times do |n|
+      x = n + 1
+      calendar_dates.unshift (@month.first - x.days).strftime "%-d"
+    end
+    calendar_dates
+  end
+
+  def add_right_pad(calendar_dates)
+    right_pad_number.times do |n|
+      x = n + 1
+      calendar_dates << (@month.last + x.days).strftime("%-d")
+    end
+    calendar_dates
   end
 end
