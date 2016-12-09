@@ -14,8 +14,6 @@ feature 'User can edit a pursuit' do
     click_button 'Save'
 
     expect(page).to have_selector '*[rel="success-flash"]'
-    visit user_pursuit_path @pursuit.id
-    expect(find("*[rel=default-pomodoro-length]").text).to eq "Default Pomodoro Length: 00:30:00"
   end
 
   scenario 'User can edit a pursuit by clicking edit from show page' do

@@ -31,13 +31,17 @@
     border-left: 1px solid #cccccc;
   }
 
+  &.today {
+    background-color: #eaeaea;
+    font-weight: bold;
+  }
+
   &.contributed {
     background-color: $janes-blue-bg;
     color: $janes-blue-cont;
   }
 
-  &.today {
-    background-color: #eaeaea;
-    font-weight: bold;
+  &.nonmonth {
+    color: #aaa;
   }
 }

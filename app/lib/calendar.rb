@@ -1,18 +1,18 @@
 class Calendar
   def initialize(date)
     @date = date
-    @month = date.all_month
+    @month = date.all_month.to_a
+  end
+
+  def date
+    @date
   end
 
   def dates # array
-    return_value = @month.map { |d| d.strftime "%-d" }
+    return_value = @month
     return_value = add_left_pad return_value
     return_value = add_right_pad return_value
     return_value.in_groups_of 7
-  end
-
-  def haml
-    # Haml::Engine.new "%h1 Etcetera"
   end
 
   private
@@ -26,17 +26,15 @@ class Calendar
   end
 
   def add_left_pad(calendar_dates)
-    left_pad_number.times do |n|
-      x = n + 1
-      calendar_dates.unshift (@month.first - x.days).strftime "%-d"
+    left_pad_number.times do
+      calendar_dates.unshift(@month.first - 1.days)
     end
     calendar_dates
   end
 
   def add_right_pad(calendar_dates)
-    right_pad_number.times do |n|
-      x = n + 1
-      calendar_dates << (@month.last + x.days).strftime("%-d")
+    right_pad_number.times do
+      calendar_dates << (@month.last + 1.days)
     end
     calendar_dates
   end

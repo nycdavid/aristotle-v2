@@ -23,6 +23,16 @@ class Pursuit < ActiveRecord::Base
     { count: pomodori.count, time: pomodori.sum("elapsed_time") }
   end
 
+  def contributed_on?(date)
+    # utc date
+    pomodori.
+      where(
+        "created_at >= ? AND created_at <= ?",
+        date.beginning_of_day,
+        date.end_of_day
+      ).any?
+  end
+
   private
 
   def start_of_day(date_string)
@@ -40,7 +50,7 @@ class Pursuit < ActiveRecord::Base
     date = Time.strptime(date_string, "%Y%m%d").end_of_day
     users_timezone.local_to_utc(date)
   end
-  
+
   def users_timezone
     TZInfo::Timezone.get(user.timezone)
   end

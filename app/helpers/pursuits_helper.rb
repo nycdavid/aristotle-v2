@@ -20,7 +20,7 @@ module PursuitsHelper
     (@pursuit.default_pomodoro_length / 60)
   end
 
-  def default_seconds 
+  def default_seconds
     @pursuit.default_pomodoro_length - (@pursuit.default_pomodoro_length / 60) * 60
   end
 
@@ -32,8 +32,29 @@ module PursuitsHelper
     end
   end
 
-  def todays_calendar
-    @now = DateTime.now
+  def date_classes(day, week)
+    classes = ["date"]
+    if week.index(day) == 0
+      classes << "first"
+    end
+    if day.today?
+      classes << "today"
+    end
+    if @pursuit.contributed_on? day
+      classes << "contributed"
+    end
+    unless @calendar.date.all_month.include? day
+      classes << "nonmonth"
+    end
+    classes.join " "
+  end
+
+  def calendar_date_display(day)
+    if @calendar.date.beginning_of_month == day
+      "#{day.strftime "%b"} 1"
+    else
+      "#{day.strftime "%-d"}"
+    end
   end
 
   private

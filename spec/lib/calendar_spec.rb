@@ -15,6 +15,15 @@ describe Calendar do
   it "creates an array of arrays to represent dates" do
     calendar = Calendar.new current_time
 
-    expect(calendar.dates).to eq correct_calendar_array
+    expect(calendar.dates.map { |w| w.map { |d| d.strftime "%-d" } })
+      .to eq correct_calendar_array
   end
+
+  it "right pads the proper number of days" do
+    current_time = DateTime.new 2017, 01, 20
+    calendar = Calendar.new current_time
+
+    expect(calendar.dates.map { |w| w.map { |d| d.strftime "%-d" } }.last)
+      .to eq ["29", "30", "31", "1", "2", "3", "4"]
+    end
 end

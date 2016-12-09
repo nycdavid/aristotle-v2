@@ -17,7 +17,7 @@ describe Pursuit, 'validations' do
   it 'should not allow a blank name' do
     @pursuit.name = nil
 
-    expect(@pursuit).not_to be_valid 
+    expect(@pursuit).not_to be_valid
     expect(@pursuit.errors.messages[:name]).to include "can't be blank"
   end
 
@@ -66,7 +66,7 @@ describe Pursuit, '#todays_pomodori' do
     @pursuit = FactoryGirl.create(:pursuit, { user_id: user.id })
   end
 
-  
+
 end
 
 describe Pursuit, 'dependent destroy' do
@@ -77,6 +77,33 @@ describe Pursuit, 'dependent destroy' do
       pursuit = pomodoro.pursuit
       pursuit.destroy
       expect(pursuit.pomodori).to be_empty
+    end
+  end
+end
+
+describe Pursuit, "#contributed_on?" do
+  let(:user) { FactoryGirl.create :user }
+  let(:users_timezone) { TZInfo::Timezone.get(user.timezone) }
+  let(:pursuit) { FactoryGirl.create :pursuit, user_id: user.id }
+  let(:date_in_users_timezone) { users_timezone.utc_to_local(Time.now.utc).strftime "%m/%d/%Y" }
+
+  context "when a user has contributed to a Pursuit on a specific day" do
+    it "returns true when passed that date" do
+      date = Chronic.parse("#{date_in_users_timezone} 1:00 AM")
+      Timecop.
+        travel(users_timezone.local_to_utc(date)) do
+          FactoryGirl.create(:pomodoro, pursuit_id: pursuit.id)
+        end
+
+      expect(pursuit.contributed_on?(date)).to eq true
+    end
+  end
+
+  context "when a user has not contributed to a Pursuit on a specific day" do
+    it "returns false when passed that date" do
+      date = Chronic.parse("#{date_in_users_timezone} 1:00 AM")
+
+      expect(pursuit.contributed_on?(date)).to eq false
     end
   end
 end

@@ -22,6 +22,7 @@ class PursuitsController < ApplicationController
 
   def show
     @section_heading = @pursuit.name
+    @calendar = Calendar.new Date.today
     respond_to do |format|
       format.html { render :show }
       format.json { render :json => @pursuit.to_json }

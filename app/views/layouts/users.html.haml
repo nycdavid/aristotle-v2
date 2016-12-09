@@ -17,7 +17,8 @@
     - flash.each do |name, msg|
       = content_tag :div, content_tag(:span, msg, class: "notification__text"), rel: "#{name}-flash", class: "notification notification--#{name}"
     %div.table-layout__row.table-row
-      %nav.side-nav.table-row__cell.table-row__cell--left{ style: "display: none;" }
+      %nav.side-nav.table-row__cell.table-row__cell--left
+        %i.fa.fa-times.nav-close
         - if user_signed_in?
           %ul
             %li.nav-link.user-avatar
