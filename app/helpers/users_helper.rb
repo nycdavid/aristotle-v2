@@ -5,7 +5,7 @@ module UsersHelper
 
   def gravatar_image_url(size: 80)
     hash = Digest::MD5.hexdigest current_user.email.downcase
-    "http://www.gravatar.com/avatar/#{hash}?s=#{size}"
+    "https://www.gravatar.com/avatar/#{hash}?s=#{size}"
   end
 
   def display_name
@@ -17,7 +17,7 @@ module UsersHelper
   end
 
   def active?(action)
-    comparison_string = "#{controller_name}-#{action_name}" 
+    comparison_string = "#{controller_name}-#{action_name}"
     if comparison_string == action
       "nav-link--active"
     end
