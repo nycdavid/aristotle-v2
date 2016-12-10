@@ -9,7 +9,7 @@ $(document).ready(function() {
           userVisibleOnly: true,
           applicationServerKey: new Uint8Array([])
         }).then(function(pushSubscription) {
-          swReg.showNotification('Foobar');
+          // swReg.showNotification('Foobar');
         });
       })
   }
