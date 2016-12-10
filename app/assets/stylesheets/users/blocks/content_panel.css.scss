@@ -1,9 +1,19 @@
 .content-panel {
   background-color: #fff;
   margin-bottom: 18px;
+  margin-left: 15px;
   padding: 18px 15px 18px 15px;
   border: 1px solid #eeeeee;
   border-radius: 1px;
+  float: none !important;
+
+  &--first {
+    margin-left: 0;
+  }
+
+  @media (max-width: 768px) {
+    margin-left: 0;
+  }
 }
 
 .panel-name {

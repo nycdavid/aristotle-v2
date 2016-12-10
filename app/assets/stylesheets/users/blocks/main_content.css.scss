@@ -3,4 +3,10 @@
 .main-content {
   padding-top: 16px;
   font-family: $open-sans;
+  display: flex;
+  flex-wrap: wrap;
+
+  @media (max-width: 768px) {
+    flex-direction: column;
+  }
 }

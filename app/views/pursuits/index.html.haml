@@ -1,4 +1,4 @@
-.content-panel.content-panel--last{ rel: "pursuits" }
+.content-panel.content-panel--first.col-md-4{ rel: "pursuits" }
   .pursuits-context{ rel: "pursuits-context" }
     = context_link "today"
     |
@@ -24,7 +24,3 @@
         %td.summary__time{ rel: "pomodori-time" }= convert_total_seconds_of(current_user.todays_productivity[:time])
         %td
   = link_to "Add", new_user_pursuit_path, class: "btn btn-lg btn-clear branding-controls__control branding-controls__control--large"
-.content-panel.content-panel--last
-  .inspirational-quote
-    %blockquote.inspirational-quote__body= @inspirational_quote["body"]
-    %span.inspirational-quote__author -#{@inspirational_quote["author"]}

@@ -44,4 +44,8 @@
   &.nonmonth {
     color: #aaa;
   }
+
+  @media (min-width: 769px) {
+    height: 80px;
+  }
 }

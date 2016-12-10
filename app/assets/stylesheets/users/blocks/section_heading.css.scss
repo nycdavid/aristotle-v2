@@ -5,4 +5,16 @@
   font-family: $open-sans;
   background-color: #e9edf2;
   border-bottom: 1px solid #dee2e8;
+  display: flex;
+  align-items: center;
+
+  &__text {
+    margin: 0 !important;
+    font-size: 38px;
+
+    @media (max-width: 768px) {
+      text-align: center;
+      width: 100%;
+    }
+  }
 }

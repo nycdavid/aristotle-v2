@@ -6,7 +6,8 @@
   height: 100%;
   text-align: center;
   font-family: $open-sans;
-  padding-top: 18px;
+  padding: 18px 0 0 0 !important;
+  z-index: 1;
 
   @media (max-width: 768px) {
     display: none;
@@ -17,7 +18,7 @@
 
 .nav-open {
   float: left;
-  font-size: 28px;  
+  font-size: 28px;
   @media (min-width: 769px) {
     display: none;
   }

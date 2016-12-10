@@ -9,6 +9,7 @@ function NavToggler(open, nav, close) {
 
 NavToggler.prototype.open = function() {
   this.$nav.css('display', 'block');
+  this.$nav.css('position', 'absolute');
 }
 
 NavToggler.prototype.close = function() {
