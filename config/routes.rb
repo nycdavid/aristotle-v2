@@ -2,6 +2,7 @@ Rails.application.routes.draw do
   get 'errors/not_found'
 
   root to: 'pages#home'
+  get "/.well-known/acme-challenge/:id" => "pages#lets_encrypt"
 
   # Public routes
   get '/login', to: 'sessions#new', as: 'login'
