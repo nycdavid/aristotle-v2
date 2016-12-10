@@ -1,7 +1,6 @@
 locals: &locals
   adapter: postgresql
-  host: localhost
-  port: 5432
+  host: db
   username: postgres
   password:
   pool: 5

@@ -18,7 +18,7 @@
     - flash.each do |name, msg|
       = content_tag :div, content_tag(:span, msg, class: "notification__text"), rel: "#{name}-flash", class: "notification notification--#{name}"
     %div.table-layout__row.table-row
-      %nav.side-nav.table-row__cell.table-row__cell--left
+      %nav.side-nav
         %i.fa.fa-times.nav-close
         - if user_signed_in?
           %ul
@@ -39,7 +39,7 @@
               = link_to session_path, method: :delete do
                 %i.fa.fa-power-off.nav-link__icon
                 %p Logout
-      %div.table-row__cell.table-row__cell--right
+      %div.non-nav
         .main-heading
           %h2.main-heading__text= @section_heading
         .main-content.container-fluid

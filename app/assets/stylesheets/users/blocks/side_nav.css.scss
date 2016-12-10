@@ -3,12 +3,10 @@
 .side-nav {
   background-color: #34425a;
   width: 160px;
-  float: left;
   height: 100%;
   text-align: center;
   font-family: $open-sans;
-  position: relative;
-  z-index: 1;
+  padding-top: 18px;
 
   @media (max-width: 768px) {
     display: none;
