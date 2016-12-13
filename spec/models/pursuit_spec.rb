@@ -89,21 +89,25 @@ describe Pursuit, "#contributed_on?" do
 
   context "when a user has contributed to a Pursuit on a specific day" do
     it "returns true when passed that date" do
-      date = Chronic.parse("#{date_in_users_timezone} 1:00 AM")
-      Timecop.
-        travel(users_timezone.local_to_utc(date)) do
-          FactoryGirl.create(:pomodoro, pursuit_id: pursuit.id)
-        end
+      utc = Time.utc(2008, 9, 2, 0, 30, 0)
+      local = Time.local(2008, 9, 1, 23, 0, 0)
+      Timecop.travel(utc) do
+        FactoryGirl.create(:pomodoro, pursuit_id: pursuit.id)
+      end
 
-      expect(pursuit.contributed_on?(date)).to eq true
+      expect(pursuit.contributed_on?(local)).to eq true
     end
   end
 
   context "when a user has not contributed to a Pursuit on a specific day" do
     it "returns false when passed that date" do
-      date = Chronic.parse("#{date_in_users_timezone} 1:00 AM")
+      utc = Time.utc(2008, 9, 2, 5, 30, 0)
+      local = Time.local(2008, 9, 1, 23, 0, 0)
+      Timecop.travel(utc) do
+        FactoryGirl.create(:pomodoro, pursuit_id: pursuit.id)
+      end
 
-      expect(pursuit.contributed_on?(date)).to eq false
+      expect(pursuit.contributed_on?(local)).to eq false
     end
   end
 end

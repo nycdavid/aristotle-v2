@@ -24,12 +24,11 @@ class Pursuit < ActiveRecord::Base
   end
 
   def contributed_on?(date)
-    # utc date
     pomodori.
       where(
         "created_at >= ? AND created_at <= ?",
-        date.beginning_of_day,
-        date.end_of_day
+        date.beginning_of_day.utc,
+        date.end_of_day.utc
       ).any?
   end
 

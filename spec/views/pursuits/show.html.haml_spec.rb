@@ -14,4 +14,7 @@ RSpec.describe "pursuits/show", type: :view do
 
     expect(rendered).to match /<li class='date today'>Sep 1<\/li>/
   end
+
+  it "shows the correct contributions according to a User's timezone" do
+  end
 end

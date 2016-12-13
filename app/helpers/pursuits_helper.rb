@@ -37,7 +37,7 @@ module PursuitsHelper
     if week.index(day) == 0
       classes << "first"
     end
-    today = DateTime.now.in_time_zone(@user.timezone).to_date
+    today = DateTime.now.in_time_zone(@pursuit.user.timezone).to_date
     if day === today
       classes << "today"
     end
