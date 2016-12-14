@@ -8,19 +8,25 @@ function NavToggler(open, nav, close) {
 }
 
 NavToggler.prototype.open = function() {
+  if ($(window).width() > 768) {
+    return false;
+  }
   this.$nav.css('display', 'block');
   this.$nav.css('position', 'absolute');
 }
 
 NavToggler.prototype.close = function() {
+  if ($(window).width() > 768) {
+    return false;
+  }
+  var screenWidth = $(window).width();
   this.$nav.css('display', 'none');
 }
 
 $(document).ready(function() {
-  var icon = '<i class="nav-open fa fa-bars" aria-hidden="true"></i>';
-  var $icon = $('.main-heading').prepend(icon);
+  var $icon = $('.main-heading').prepend('<i class="nav-open fa fa-bars"></i>');
+  var $close = $('.side-nav').prepend('<i class="nav-close fa fa-times"></i>');
   var $nav = $('.side-nav');
-  var $close = $('.nav-close');
 
   new NavToggler($icon, $nav, $close);
 });
