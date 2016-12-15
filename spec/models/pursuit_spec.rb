@@ -88,9 +88,9 @@ describe Pursuit, "#contributed_on?" do
   let(:date_in_users_timezone) { users_timezone.utc_to_local(Time.now.utc).strftime "%m/%d/%Y" }
 
   context "when a user has contributed to a Pursuit on a specific day" do
-    it "returns true when passed that date" do
+    it "returns true when past that date" do
       utc = Time.utc(2008, 9, 2, 0, 30, 0)
-      local = Time.local(2008, 9, 1, 23, 0, 0)
+      local = Date.new(2008, 9, 1)
       Timecop.travel(utc) do
         FactoryGirl.create(:pomodoro, pursuit_id: pursuit.id)
       end
