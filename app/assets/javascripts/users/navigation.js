@@ -23,10 +23,13 @@ NavToggler.prototype.close = function() {
   this.$nav.css('display', 'none');
 }
 
+
 $(document).ready(function() {
-  var $icon = $('.main-heading').prepend('<i class="nav-open fa fa-bars"></i>');
-  var $close = $('.side-nav').prepend('<i class="nav-close fa fa-times"></i>');
+  $('.main-heading').prepend('<i class="nav-open fa fa-bars"></i>');
+  $('.side-nav').prepend('<i class="nav-close fa fa-times"></i>');
+  var $open = $('.nav-open');
+  var $close = $('.nav-close');
   var $nav = $('.side-nav');
 
-  new NavToggler($icon, $nav, $close);
+  new NavToggler($open, $nav, $close);
 });
