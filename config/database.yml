@@ -13,8 +13,6 @@ development:
 test:
   <<: *locals
   database: test_db
-  host: localhost
-  port: 5432
 
 production:
   <<: *locals
