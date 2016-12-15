@@ -27,8 +27,8 @@ class Pursuit < ActiveRecord::Base
     pomodori.
       where(
         "created_at >= ? AND created_at <= ?",
-        date.beginning_of_day.utc,
-        date.end_of_day.utc
+        date.in_time_zone(user.timezone).utc,
+        date.in_time_zone(user.timezone).end_of_day.utc,
       ).any?
   end
 
