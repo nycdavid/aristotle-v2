@@ -15,3 +15,4 @@
         %li{ class: date_classes(day, week) }= calendar_date_display day
 .content-panel.clock.col-md-4
   %h3.panel-name Your clock
+  = link_to "Start", new_user_pursuit_pomodoro_path(@pursuit.id), class: "btn btn-xs btn-clear branding-controls__control branding-controls__control--small"
