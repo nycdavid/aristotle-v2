@@ -70,7 +70,6 @@ var Pomodoro = React.createClass({
   _pomodoroCompleted: function() {
     clearInterval(this.state.intervalId);
     PomodoroActionCreators.savePomodoro(this.state.pursuitId, this.state.elapsedTime);
-    alert("Pomodoro completed!");
   }
 });
 
