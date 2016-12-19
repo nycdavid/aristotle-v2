@@ -2,6 +2,7 @@
 //= require jquery
 //= require jquery_ujs
 //= require react_ujs
+//= require ./utilities/push_notifications
 
 React = require("react");
 

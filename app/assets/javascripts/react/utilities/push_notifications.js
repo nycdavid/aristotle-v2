@@ -8,8 +8,10 @@ $(document).ready(function() {
         swReg.pushManager.subscribe({
           userVisibleOnly: true,
           applicationServerKey: new Uint8Array([])
-        }).then(function(pushSubscription) {
-          // swReg.showNotification('Foobar');
+        }).then(function(sub) {
+          console.log('Subscribed!', sub);
+        }, function(err) {
+          console.log('ERROR', err);
         });
       })
   }
