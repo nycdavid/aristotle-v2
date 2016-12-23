@@ -12,10 +12,7 @@ module.exports = {
         }
       },
       success: function() {
-        navigator.serviceWorker.ready.then(function(reg) {
-          window.focus();
-          reg.showNotification('Timer complete!');
-        });
+        alert('Timer complete!');
         window.location.assign("/user/pursuits/" + pursuitId);
       }
     });
