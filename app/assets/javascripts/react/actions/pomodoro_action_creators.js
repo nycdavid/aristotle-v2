@@ -13,6 +13,7 @@ module.exports = {
       },
       success: function() {
         navigator.serviceWorker.ready.then(function(reg) {
+          window.focus();
           reg.showNotification('Timer complete!');
         });
         window.location.assign("/user/pursuits/" + pursuitId);
@@ -22,7 +23,7 @@ module.exports = {
   setTimeRemaining: function(time) {
     dispatcher.dispatch({
       type: "receive-time-remaining",
-      timeRemaining: time 
+      timeRemaining: time
     });
   }
 }
