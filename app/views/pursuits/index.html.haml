@@ -16,8 +16,12 @@
           %td= link_to pursuit.name, user_pursuit_path(pursuit.id)
           %td.time-and-count #{convert_total_seconds_of(pursuit.ranged_pomodori(@range)[:time])}
           %td.actions
-            = link_to "Start", new_user_pursuit_pomodoro_path(pursuit.id), class: "btn btn-xs btn-clear branding-controls__control branding-controls__control--small"
-
+            = link_to new_user_pursuit_pomodoro_path(pursuit.id), class: "btn btn-xs btn-clear branding-controls__control branding-controls__control--large" do
+              %i.fa.fa-play
+            = link_to edit_user_pursuit_path(pursuit.id), class: "btn btn-xs btn-clear branding-controls__control branding-controls__control--large" do
+              %i.fa.fa-pencil-square-o
+            = link_to user_pursuit_path(pursuit.id), class: "btn btn-xs btn-clear branding-controls__control branding-controls__control--large", method: :delete, data: { confirm: 'Are you sure you want to delete this pursuit?' } do
+              %i.fa.fa-trash
     - if @range == "today"
       %tfoot.summary
         %td
