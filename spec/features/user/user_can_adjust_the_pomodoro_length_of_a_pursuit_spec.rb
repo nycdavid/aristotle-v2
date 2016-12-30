@@ -16,9 +16,9 @@ feature 'User can edit a pursuit' do
     expect(page).to have_selector '*[rel="success-flash"]'
   end
 
-  scenario 'User can edit a pursuit by clicking edit from show page' do
-    visit user_pursuit_path(@pursuit.id)
-    click_link 'Edit'
+  scenario 'User can edit a pursuit by clicking edit from index page' do
+    visit user_pursuits_path
+    click_link "edit-pursuit"
 
     expect(page).to have_content "Edit: #{@pursuit.name}"
   end
