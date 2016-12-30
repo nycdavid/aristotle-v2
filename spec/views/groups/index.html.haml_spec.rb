@@ -1,9 +1,8 @@
 require "rails_helper"
 
-RSpec.describe "pursuits/show", type: :view do
+RSpec.describe "groups/index", type: :view do
   let(:user) { FactoryGirl.create :user }
-  let(:group) { FactoryGirl.create :group }
-  let(:pursuit) { FactoryGirl.create :pursuit, user: user, group: group }
+  let(:pursuit) { FactoryGirl.create :pursuit, user: user }
 
   it "shows the correct date according to a User's timezone" do
     utc = Time.utc(2008, 9, 2, 1, 0, 0)
